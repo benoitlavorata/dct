@@ -68,7 +68,7 @@ _success "OK, folder $1 created"
 
 #Download script
 _info "Download script: $URL"
-wget -O - $URL
+wget $URL
 _success "OK, script downloaded at $1/docker-compose.yml"
 
 _section "Thank you for using the composeapps script ! See you soon"
