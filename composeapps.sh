@@ -74,12 +74,17 @@ _success "OK, script downloaded at $1/docker-compose.yml"
 
 #Create up, down scripts
 _info "Create up.sh, down.sh scripts in $1"
+
 echo "#!/bin/bash" > up.sh
 echo "echo Will now start: $1 ..." >> up.sh
 echo "docker-compose up -d" >> up.sh
+chmod +x up.sh
+
 echo "#!/bin/bash" > down.sh
 echo "echo Will now stop: $1 ..." >> down.sh
 echo "docker-compose down" >> down.sh
+chmod +x down.sh
+
 _success "OK, start/stop scripts created"
 
 _section "Thank you for using the composeapps script !"
