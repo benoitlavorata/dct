@@ -5,7 +5,7 @@ Using docker and docker-compose is not so easy for the beginners... This is a re
 If you want to easily install on your server/computer, you can use a small batch script (UNIX only) as described below.
 Replace shadowsocks by the folder name of the app name you wish to use.
 ```bash
-wget -O - https://raw.githubusercontent.com/sbglive/compose/master/composapps.sh
+wget https://raw.githubusercontent.com/sbglive/compose/master/composeapps.sh | chmod +x composeapps.sh
 ./composeapps.sh shadowsocks
 cd shadowsocks
 docker-compose up

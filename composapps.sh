@@ -8,7 +8,7 @@ DATE='date +%Y/%m/%d-%H:%M:%S'
 function _intro {
     echo " "
     echo "================================"
-    echo "SBG COMPOSE > $1"
+    echo "SBG COMPOSE APPS > $1"
     echo "--------------------------------"
     echo "Benoit Lavorata, 2018"
     echo "================================"
@@ -71,4 +71,4 @@ _info "Download script: $URL"
 wget -O - $URL
 _success "OK, script downloaded at $1/docker-compose.yml"
 
-_section "Thank you for using the composapps script ! See you soon"
+_section "Thank you for using the composeapps script ! See you soon"
