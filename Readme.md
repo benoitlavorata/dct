@@ -17,7 +17,14 @@ Feel free to fork, clone or contribute !
 
 
 # APP List
+
 ## shadowsocks
 Based on mritd/shadowsocks:latest
-- Make sure to open firewall ports are 6443/tcp and 6500/udp on your host
+- To access from web, open firewall ports: 6443/tcp and 6500/udp
 - Change password "test123" in the .yml file
+
+## Cloud9
+Based on sapk/cloud9:latest
+- To access from web, open firewall ports: 8181/tcp
+- Login/Password: input your login and password instead of "login:password"
+- Replace "~/workspace" by the path on your host that you want to see in cloud9
