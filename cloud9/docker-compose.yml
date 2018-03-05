@@ -1,0 +1,10 @@
+version: '2'
+services:
+  cloud9:
+    image: sapk/cloud9:latest
+    restart: 'always'
+    command: '--auth login:password'
+    ports:
+      - 8181:8181
+    volumes:
+       - '~/workspace:/workspace'

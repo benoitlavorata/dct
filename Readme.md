@@ -9,7 +9,7 @@ rm composeapps.sh
 wget https://raw.githubusercontent.com/sbglive/compose/master/composeapps.sh && chmod +x composeapps.sh
 ./composeapps.sh shadowsocks
 cd shadowsocks
-docker-compose up
+docker-compose up -d
 ```
 
 ## Make it your own ? Contribute
