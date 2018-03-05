@@ -76,7 +76,7 @@ _success "OK, script downloaded at $1/docker-compose.yml"
 _info "Create up.sh, down.sh scripts in $1"
 echo "#!/bin/bash" > up.sh
 echo "echo Will now start: $1 ..." >> up.sh
-echo "docker-compose up" >> up.sh
+echo "docker-compose up -d" >> up.sh
 echo "#!/bin/bash" > down.sh
 echo "echo Will now stop: $1 ..." >> down.sh
 echo "docker-compose down" >> down.sh
