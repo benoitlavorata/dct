@@ -23,7 +23,7 @@ Based on mritd/shadowsocks:latest
 - To access from web, open firewall ports: 6443/tcp and 6500/udp
 - Change password "test123" in the .yml file
 
-## Cloud9
+## cloud9
 Based on sapk/cloud9:latest
 - To access from web, open firewall ports: 8181/tcp
 - Login/Password: input your login and password instead of "login:password"
