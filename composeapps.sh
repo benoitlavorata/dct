@@ -71,4 +71,21 @@ _info "Download script: $URL"
 wget $URL
 _success "OK, script downloaded at $1/docker-compose.yml"
 
-_section "Thank you for using the composeapps script ! See you soon"
+
+#Create up, down scripts
+_info "Create up.sh, down.sh scripts in $1"
+echo "#!/bin/bash" > up.sh
+echo "echo Will now start: $1 ..." >> up.sh
+echo "docker-compose up" >> up.sh
+echo "#!/bin/bash" > down.sh
+echo "echo Will now stop: $1 ..." >> down.sh
+echo "docker-compose down" >> down.sh
+_success "OK, start/stop scripts created"
+
+_section "Thank you for using the composeapps script !"
+_info "You can now start your app by executing these commands:"
+_info " "
+_info "Start the app $1:   ./up.sh"
+_info "Stop the app $1:   ./down.sh"
+_info " "
+_success "Cheers, Benoit Lavorata (2018)."
