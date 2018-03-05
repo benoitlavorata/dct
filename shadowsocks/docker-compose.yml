@@ -4,10 +4,10 @@ services:
     image: 'mritd/shadowsocks:latest'
     restart: 'always'
     environment:
-      - SS_CONFIG="-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open"
-      - KCP_MODULE="kcpserver"
-      - KCP_CONFIG="-t 127.0.0.1:6443 -l :6500 -mode fast2"
-      - KCP_FLAG="true"
+      - SS_CONFIG='-s 0.0.0.0 -p 6443 -m aes-256-cfb -k test123 --fast-open'
+      - KCP_MODULE='kcpserver'
+      - KCP_CONFIG='-t 127.0.0.1:6443 -l :6500 -mode fast2'
+      - KCP_FLAG='true'
     ports:
       - '6443:6443'
       - '6500:6500/udp'
