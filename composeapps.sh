@@ -85,12 +85,18 @@ echo "echo Will now stop: $1 ..." >> down.sh
 echo "docker-compose down" >> down.sh
 chmod +x down.sh
 
+echo "#!/bin/bash" > logs.sh
+echo "echo Will now tail logs of $1 ..." >> logs.sh
+echo "docker-compose logs -f" >> logs.sh
+chmod +x logs.sh
+
 _success "OK, start/stop scripts created"
 
 _section "Thank you for using the composeapps script !"
 _info "You can now start your app by executing these commands:"
 _info " "
-_info "Start the app $1:   ./up.sh"
-_info "Stop the app $1:   ./down.sh"
+_info "Start the app $1:    ./up.sh"
+_info "Stop the app $1:     ./down.sh"
+_info "Follow logs of $1:   ./logs.sh"
 _info " "
 _success "Cheers, Benoit Lavorata (2018)."
