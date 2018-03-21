@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:9.5'
+    restart: 'always'
+    ports:
+      - '5432:5432'
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_USER=odoo11
+      - POSTGRES_PASSWORD=change_password
+      
+  odoo:
+    image: 'elicocorp/odoo-china:11.0'
+    restart: 'always'
+    command: start
+    ports:
+      - '8069:8069'
+    volumes:
+      - './odoo_data/filestore:/opt/odoo/data/filestore'
+      - './odoo_data/sessions:/opt/odoo/data/sessions'
+      - './odoo_data/additional_addons:/opt/odoo/additional_addons'
+      - './odoo_data/specific_addons:/opt/odoo/specific_addons'
+      - './odoo_data/etc:/opt/odoo/etc'
+    links:
+      - 'postgres:db'
+    environment:
+      - ODOO_ADMIN_PASSWD=change_password
+      - ODOO_DB_USER=odoo11
+      - ODOO_DB_PASSWORD=change_password
+      - FETCH_OCA_DEPENDENCIES=False

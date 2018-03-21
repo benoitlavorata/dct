@@ -41,4 +41,3 @@ function _quit_if_not_root {
     fi
     _success "Log in as root"
 }
-
