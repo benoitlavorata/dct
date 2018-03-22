@@ -124,18 +124,23 @@ _section "Create quick service scripts"
 echo "#!/bin/bash" > $SERVICE_DISABLE_SCRIPT
 echo "echo Will now disable: $SERVICE_NAME ..." >> $SERVICE_DISABLE_SCRIPT
 echo "sudo systemctl disable $SERVICE_SCRIPT" >> $SERVICE_DISABLE_SCRIPT
+chmod +x $SERVICE_DISABLE_SCRIPT
 echo "#!/bin/bash" > $SERVICE_ENABLE_SCRIPT
 echo "echo Will now enable: $SERVICE_NAME ..." >> $SERVICE_ENABLE_SCRIPT
 echo "sudo systemctl enable $SERVICE_SCRIPT" >> $SERVICE_ENABLE_SCRIPT
+chmod +x $SERVICE_ENABLE_SCRIPT
 echo "#!/bin/bash" > $SERVICE_RESTART_SCRIPT
 echo "echo Will now restart: $SERVICE_NAME ..." >> $SERVICE_RESTART_SCRIPT
 echo "sudo systemctl restart $SERVICE_SCRIPT" >> $SERVICE_RESTART_SCRIPT
+chmod +x $SERVICE_RESTART_SCRIPT
 echo "#!/bin/bash" > $SERVICE_STOP_SCRIPT
 echo "echo Will now stop: $SERVICE_NAME ..." >> $SERVICE_STOP_SCRIPT
 echo "sudo systemctl stop $SERVICE_SCRIPT" >> $SERVICE_STOP_SCRIPT
+chmod +x $SERVICE_STOP_SCRIPT
 echo "#!/bin/bash" > $SERVICE_STATUS_SCRIPT
 echo "echo Will now check status: $SERVICE_NAME ..." >> $SERVICE_STATUS_SCRIPT
 echo "sudo systemctl status $SERVICE_SCRIPT" >> $SERVICE_STATUS_SCRIPT
+chmod +x $SERVICE_STATUS_SCRIPT
 
 echo "#!/bin/bash" > $SERVICE_REMOVE_SCRIPT
 echo "echo Will now remove these bash scripts for $SERVICE_NAME ..." >> $SERVICE_REMOVE_SCRIPT
@@ -150,10 +155,10 @@ echo "sudo rm $SERVICE_RESTART_SCRIPT" >> $SERVICE_REMOVE_SCRIPT
 echo "sudo rm $SERVICE_ENABLE_SCRIPT" >> $SERVICE_REMOVE_SCRIPT
 echo "sudo rm $SERVICE_DISABLE_SCRIPT" >> $SERVICE_REMOVE_SCRIPT
 echo "OK all done, only need to remove $NODE_SCRIPT_FOLDER/$SERVICE_REMOVE_SCRIPT and you are done !" >> $SERVICE_REMOVE_SCRIPT
+chmod +x $SERVICE_REMOVE_SCRIPT
 _success "Create quick scripts"
 
-_section "Change permissions, set as executables"
-chmod +x *.sh
+_section "Change permissions"
 sudo chown $SERVICE_USER:$SERVICE_USERGROUP *.sh
 _success "Changed permissions"
 
