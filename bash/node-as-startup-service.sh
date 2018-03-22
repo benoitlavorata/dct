@@ -1,44 +1,53 @@
 #!/bin/bash
 
-#MAKE SURE TO DEFINE VARIABLES
-SERVICE_NAME="pos_monitor"
-SERVICE_USER="plspos"
-NODE_SCRIPT_FOLDER="/home/plspos/Documents/pos_monitor/"
-NODE_BOOT_COMMAND="node index.js"
+# MAKE SURE TO DEFINE VARIABLES
+SERVICE_NAME="YOUR_SERVICE" # Like my-node-script-service
+SERVICE_USER="YOUR_USER" # Like "benoit"
+NODE_SCRIPT_FOLDER="PATH_TO_YOUR_NODE_SCRIPT_FOLDER" # Like /home/user/node-script/
+NODE_BOOT_COMMAND="COMMAND_TO_EXECUTE" # Like "node index.js"
+
+if [ "$SERVICE_NAME" == "YOUR_SERVICE" ] || [ "$SERVICE_USER" == "YOUR_USER" ] || [ "$NODE_SCRIPT_FOLDER" == "PATH_TO_YOUR_NODE_SCRIPT_FOLDER" ] || [ "$NODE_BOOT_COMMAND" == "COMMAND_TO_EXECUTE" ] ;
+then
+  echo "ERROR: Make sure to edit the script and replace the default variable values before running it !"
+fi
 
 
+#################################################################
+### HELPERS V2 ### THE MAGIC PART IS AFTER THE END OF HELPERS ###
+#################################################################
+# COPY PASTE AT FRONT OF BASH SCRIPTS, KEEP THEM DEPENCY FREE
 
-### HELPERS V1
 # DEFINE LOG FUNCTION
-DATE='date +%Y/%m/%d-%H:%M:%S'
+__DATE='date +%Y/%m/%d %H:%M:%S'
+__YEAR=`date +%Y`
 
 function _intro {
     echo " "
     echo "================================"
-    echo "SBG > ODOO UBUNTU $1"
+    echo "SBG > BASH SCRIPT: $1"
     echo "--------------------------------"
-    echo "Benoit Lavorata, December 2017"
+    echo "Benoit Lavorata, $__YEAR"
     echo "================================"
     echo " "
 }
 
 function _info {
-    echo `$DATE`"| $1"
+    echo `$__DATE`"| $1"
 }
 
 function _error {
-    echo `$DATE`"| [ERROR] $1"
+    echo `$__DATE`"| [ERROR] $1"
     echo " "
 }
 
 function _success {
-    echo `$DATE`"| [SUCCESS] $1"
+    echo `$__DATE`"| [SUCCESS] $1"
     echo " "
 }
 
 function _section {
     echo " "
-    echo `$DATE`"| --- $1 ---"
+    echo `$__DATE`"| --- $1 ---"
 #    echo "-------------------|"
 }
 function _quit_if_not_root {
@@ -51,7 +60,12 @@ function _quit_if_not_root {
     fi
     _success "Log in as root"
 }
-#### END OF HELPERS
+#################################################################
+### END OF HELPERS ### THE MAGIC PART GOES BELOW (HOPEFULLY)  ###
+#################################################################
+
+
+
 
 _intro "Install a nodejs script as a startup service"
 _quit_if_not_root "You cannot start this script without being root"
@@ -157,4 +171,4 @@ _info "Disable the service:    ./$SERVICE_DISABLE_SCRIPT.sh"
 _info "Enable the service:    ./$SERVICE_ENABLE_SCRIPT.sh"
 _info "Clean/Remove the service and these bash scripts:    ./$SERVICE_REMOVE_SCRIPT.sh"
 _info " "
-_success "Cheers, Benoit Lavorata (2018)."
+_success "Cheers, Benoit Lavorata."

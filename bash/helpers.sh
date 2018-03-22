@@ -1,36 +1,40 @@
-#!/bin/bash
 
-### HELPERS V1
+#################################################################
+### HELPERS V2 ### THE MAGIC PART IS AFTER THE END OF HELPERS ###
+#################################################################
+# COPY PASTE AT FRONT OF BASH SCRIPTS, KEEP THEM DEPENCY FREE
+
 # DEFINE LOG FUNCTION
-DATE='date +%Y/%m/%d-%H:%M:%S'
+__DATE='date +%Y/%m/%d %H:%M:%S'
+__YEAR=`date +%Y`
 
 function _intro {
     echo " "
     echo "================================"
-    echo "SBG > ODOO UBUNTU $1"
+    echo "SBG > BASH SCRIPT: $1"
     echo "--------------------------------"
-    echo "Benoit Lavorata, December 2017"
+    echo "Benoit Lavorata, $__YEAR"
     echo "================================"
     echo " "
 }
 
 function _info {
-    echo `$DATE`"| $1"
+    echo `$__DATE`"| $1"
 }
 
 function _error {
-    echo `$DATE`"| [ERROR] $1"
+    echo `$__DATE`"| [ERROR] $1"
     echo " "
 }
 
 function _success {
-    echo `$DATE`"| [SUCCESS] $1"
+    echo `$__DATE`"| [SUCCESS] $1"
     echo " "
 }
 
 function _section {
     echo " "
-    echo `$DATE`"| --- $1 ---"
+    echo `$__DATE`"| --- $1 ---"
 #    echo "-------------------|"
 }
 function _quit_if_not_root {
@@ -43,4 +47,6 @@ function _quit_if_not_root {
     fi
     _success "Log in as root"
 }
-#### END OF HELPERS
+#################################################################
+### END OF HELPERS ### THE MAGIC PART GOES BELOW (HOPEFULLY)  ###
+#################################################################
