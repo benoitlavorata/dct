@@ -1,0 +1,73 @@
+version: '2'
+services:
+  postgres:
+    image: 'postgres:9.5'
+    restart: 'always'
+    ports:
+      - '5434:5432'
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_USER=db_user
+      - POSTGRES_PASSWORD=db_password
+  odoo:
+    image: 'elicocorp/odoo-china:11.0'
+    restart: 'always'
+    command: start
+    ports:
+      - '8069:8069'
+    volumes:
+      - './odoo_data/filestore:/opt/odoo/data/filestore'
+      - './odoo_data/sessions:/opt/odoo/data/sessions'
+      - './odoo_data/additional_addons:/opt/odoo/additional_addons'
+      - './odoo_data/specific_addons:/opt/odoo/specific_addons'
+      - './odoo_data/etc:/opt/odoo/etc'
+    links:
+      - 'postgres:db'
+    environment:
+      - ODOO_ADMIN_PASSWD=odoo_password
+      - ODOO_DB_USER=db_user
+      - ODOO_DB_PASSWORD=db_password
+      - FETCH_OCA_DEPENDENCIES=False
+  portainer:
+    image: portainer/portainer:latest
+    restart: 'always'
+    ports:
+      - 9000:9000
+    volumes:
+       - './portainer_data:/data'
+       - '/var/run/docker.sock:/var/run/docker.sock'
+  cloud9:
+    image: sapk/cloud9:latest
+    restart: 'always'
+    command: '--auth cloud9user:cloud9password'
+    ports:
+      - 8181:8181
+    volumes:
+       - './:/workspace'
+  cadvisor:
+    image: google/cadvisor:latest
+    restart: 'always'
+    ports:
+      - 8080:8080
+    volumes:
+       - '/:/rootfs:ro'
+       - '/var/run:/var/run:rw'
+       - '/sys:/sys:ro'
+       - '/var/lib/docker/:/var/lib/docker:ro'
+       - './:/dev/disk:ro'
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - './mariadb_data:/bitnami'
+  owncloud:
+    image: 'bitnami/owncloud:latest'
+    ports:
+      - '9004:80'
+      - '9005:443'
+    volumes:
+      - './owncloud_data:/bitnami'
+    depends_on:
+      - mariadb
