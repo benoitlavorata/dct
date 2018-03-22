@@ -9,6 +9,7 @@ NODE_BOOT_COMMAND="COMMAND_TO_EXECUTE" # Like "node index.js"
 if [ "$SERVICE_NAME" == "YOUR_SERVICE" ] || [ "$SERVICE_USER" == "YOUR_USER" ] || [ "$NODE_SCRIPT_FOLDER" == "PATH_TO_YOUR_NODE_SCRIPT_FOLDER" ] || [ "$NODE_BOOT_COMMAND" == "COMMAND_TO_EXECUTE" ] ;
 then
   echo "ERROR: Make sure to edit the script and replace the default variable values before running it !"
+  exit 0
 fi
 
 
