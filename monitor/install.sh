@@ -10,20 +10,26 @@ _success "Cloned repository"
 
 _section "Configure your application"
 _log "Please answer the questions below"
-read -p "Admin login: " CUSTOM_ADMIN_USER
-read -p "Admin password: " CUSTOM_ADMIN_PASSWORD
+_prompt "Admin login: " CUSTOM_ADMIN_USER CUSTOM_CONF_SUMMARY
+_prompt "Admin password: " CUSTOM_ADMIN_PASSWORD CUSTOM_CONF_SUMMARY
 
 _section "Confirm your inputs"
-_log "Admin login: $CUSTOM_ADMIN_USER"
-_log "Admin password: $CUSTOM_ADMIN_PASSWORD"
-echo ""
-read -p 'Are you sure ? (y/n)' CUSTOM_CONFIG_CONFIRM
+_log "Your settings:"
+for index in ${!CUSTOM_CONF_SUMMARY[*]}
+do
+    _log1 "${CUSTOM_CONF_SUMMARY_NAMES[$index]}: ${!CUSTOM_CONF_SUMMARY_NAMES[$index]}"
+done
+
+_break_line
+_prompt 'Are you sure (y/n) ? ' CUSTOM_CONFIG_CONFIRM NONE
 
 if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _section "Building configuration"
     _log "Will now update the docker-compose.yml"
-    sed -i -e "s/ADMIN_USER/$CUSTOM_ADMIN_USER/g" docker-compose.yml
-    sed -i -e "s/ADMIN_PASSWORD/$CUSTOM_ADMIN_PASSWORD/g" docker-compose.yml
+    for index in ${!CUSTOM_CONF_SUMMARY[*]}
+    do
+         sed -i -e "s/${CUSTOM_CONF_SUMMARY_NAMES[$index]}/${!CUSTOM_CONF_SUMMARY_NAMES[$index]}/g" docker-compose.yml
+    done
     _success "OK, configuration is done"
 
     _create_compose_scripts

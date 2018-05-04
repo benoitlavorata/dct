@@ -72,6 +72,9 @@ function _log1 {
 function _log2 {
     echo -e $__PREFIX"$__INDENT$__INDENT$__INDENT$1"
 }
+function _log3 {
+    echo -e $__PREFIX"$__INDENT$__INDENT$__INDENT$__INDENT$1"
+}
 
 function _info {
     echo -e $__PREFIX"$__COLOR_INFO$__INDENT[INFO]$__NC $1"
@@ -126,6 +129,7 @@ function _folder_exists {
     eval $__resultvar="'$__result'"
 }
 
+
 function _url_file_exists
 {
     local  __resultvar=$1
@@ -167,10 +171,6 @@ function _url_exists
     eval $__resultvar="'$__result'"
 }
 
-
-
-
-
 function _shortcuts_summary {
     _section "How to start your application ?"
     _info "You can now start your app by executing these commands:"
@@ -209,10 +209,29 @@ function _download {
     _log1 "Downloaded file"
 }
 
+function _prompt {
+    local __question=$1
+    local __resultvar=$2
+    local __summary_var=$3
+    local __sumary_names_var="$3_NAMES"
+    
+    read -p "$__PREFIX$__INDENT$__question" __result
+
+    if [ "$__summary_var" == "NONE" ]; then
+        eval $__resultvar="'$__result'"
+    else
+        eval $__resultvar="'$__result'"
+        eval "$__summary_var+=($__result)"
+        eval "$__sumary_names_var+=($__resultvar)"
+    fi
+}
+function _break_line {
+    echo ""
+}
+
 #################################################################
 ### END OF HELPERS ### THE MAGIC PART GOES BELOW (HOPEFULLY)  ###
 #################################################################
-
 
 #CHECK IF WE HAVE ARG
 if [ -z ${1+x} ]; 
@@ -228,15 +247,17 @@ fi
 # VARIABLES
 APP_COMPOSE_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/docker-compose.yml"
 APP_CUSTOM_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/install.sh"
-CAN_INSTALL=0
+APP_CAN_INSTALL=0
 
+_source $APP_NAME "install.sh"
+_exit
 
 # CHECK COMPOSE URL
 _section "Check if app has a docker-compose.yml: $APP_NAME"
-_url_file_exists HAS_COMPOSE_URL $APP_COMPOSE_URL
-if [ "$HAS_COMPOSE_URL" == 1 ]; then
+_url_file_exists APP_HAS_COMPOSE_URL $APP_COMPOSE_URL
+if [ "$APP_HAS_COMPOSE_URL" == 1 ]; then
     _success "I found the app $APP_NAME on github"
-    CAN_INSTALL=1
+    APP_CAN_INSTALL=1
 else
     _info "The app $APP_NAME does not have a docker-compose.yml"
 fi
@@ -244,17 +265,17 @@ fi
 
 # Check if there is an installation script with it, if yes, run it
 _section "Check if the app $APP_NAME has a custom install script on github"
-_url_file_exists HAS_CUSTOM_URL $APP_CUSTOM_URL
-if [ "$HAS_CUSTOM_URL" == 1 ]; then
+_url_file_exists APP_HAS_CUSTOM_URL $APP_CUSTOM_URL
+if [ "$APP_HAS_CUSTOM_URL" == 1 ]; then
     _success "I found a custom script for $APP_NAME on github"
-    CAN_INSTALL=1
+    APP_CAN_INSTALL=1
 else
     _info "No custom install script for $APP_NAME"
 fi
 
 # Can we install ?
 _section "Check if we can install"
-if [ "$CAN_INSTALL" == 1 ]; then
+if [ "$APP_CAN_INSTALL" == 1 ]; then
     _success "Yes, we can."
 else
     _error "No, we cannot. The app is missing a docker-compose.yml or install.sh file."
@@ -264,8 +285,8 @@ fi
 
 # CREATE LOCAL FOLDER
 _section "Create local folder: $APP_NAME"
-_folder_exists HAS_APP_FOLDER $APP_NAME
-if [ "$HAS_APP_FOLDER" == 1 ]; then
+_folder_exists APP_HAS_APP_FOLDER $APP_NAME
+if [ "$APP_HAS_APP_FOLDER" == 1 ]; then
     _error "The folder $APP_NAME already exists. You need to rename it or remove it before installing this app here"
     _exit
 else
@@ -277,7 +298,7 @@ fi
 
 
 # DOWLOAD SCRIPTS/COMPOSE FILE
-if [ "$HAS_CUSTOM_URL" == 1 ]; then
+if [ "$APP_HAS_CUSTOM_URL" == 1 ]; then
     # DOWNLOAD CUSTOM SCRIPT
     _section "Download install script"
     _download $APP_CUSTOM_URL
