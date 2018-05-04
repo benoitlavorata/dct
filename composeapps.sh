@@ -39,25 +39,26 @@ __DATE='date +%Y%m%d-%H%M%S'
 __YEAR=`date +%Y`
 __PREFIX=$(echo -en $__COLOR_DATE`$__DATE`" | "$__NC)
 __INDENT="    "
+__LINE="--------------------------------"
 
 function _intro {
     clear
-    echo -e "$__COLOR_INTRO--------------------------------"
-    echo -e "GET SCRIPTS FOR: $1"
+    echo -e "$__COLOR_INTRO$__LINE"
+    echo -e "INSTALL APP: $1"
     echo -e "By Benoit Lavorata, $__YEAR"
-    echo -e "--------------------------------$__NC"
+    echo -e "$__LINE$__NC"
 }
 
 function _exit {
     echo -e "$__COLOR_INTRO"
-    echo -e "--------------------------------"
+    echo -e $__LINE
     echo -e "Thank you for using the compose script !"
     echo -e "Cheers, Benoit Lavorata."
     echo -e " "
     echo -e "Buy me a coffee ?"
     echo -e  "ETH: 0xdAFd17d20DcBdB24A29A073c350B7e719f45ce3D"
     echo -e  "AION: a0f0886adb7ea587db2283f902efc504304277802cb1d75dffddfc0979667e40"
-    echo -e "--------------------------------"
+    echo -e $__LINE
     echo -e "$__NC"
     exit 1
 }
@@ -87,7 +88,14 @@ function _success {
 function _section {
     echo -e " "
     echo -e $__PREFIX"$__COLOR_SECTION--- $1 ---$__NC"
-#    echo -e "-------------------|"
+}
+
+function _source {
+    echo -e " "
+    echo -e $__PREFIX"$__COLOR_INFO--- CUSTOM SCRIPT FOR $1 ---$__NC"
+    source $2
+    echo -e " "
+    echo -e $__PREFIX"$__COLOR_INFO--- END OF CUSTOM SCRIPT ---$__NC"
 }
 
 function _quit_if_not_root {
@@ -118,7 +126,7 @@ function _folder_exists {
     eval $__resultvar="'$__result'"
 }
 
-function _url_exists
+function _url_file_exists
 {
     local  __resultvar=$1
     local  __inputvar=$2
@@ -135,6 +143,33 @@ function _url_exists
     
     eval $__resultvar="'$__result'"
 }
+
+function _url_exists
+{
+    local  __resultvar=$1
+    local  __inputvar=$2
+    local  __result=0
+
+    _log "Does URL $__inputvar exist ?"
+    __result = curl -s --head http://myurl/ | head -n 1 | grep "HTTP/1.[01] [23].."
+
+    echo $__result
+    _exit
+
+    if curl --output /dev/null --silent --head --fail "$__inputvar"; then
+        _log1 "Yes, the URL exists"
+        __result=1
+    else
+        _log1 "No, the URL does not exist"
+        __result=0
+    fi
+    
+    eval $__resultvar="'$__result'"
+}
+
+
+
+
 
 function _shortcuts_summary {
     _section "How to start your application ?"
@@ -170,7 +205,7 @@ function _create_compose_scripts {
 
 function _download {
     _log "Download file: $1"
-    curl --silent --head --remote-name $1
+    curl --silent --remote-name $1
     _log1 "Downloaded file"
 }
 
@@ -193,26 +228,37 @@ fi
 # VARIABLES
 APP_COMPOSE_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/docker-compose.yml"
 APP_CUSTOM_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/install.sh"
+CAN_INSTALL=0
 
 
 # CHECK COMPOSE URL
-_section "Check if app exists on repository: $APP_NAME"
-_url_exists HAS_COMPOSE_URL $APP_COMPOSE_URL
+_section "Check if app has a docker-compose.yml: $APP_NAME"
+_url_file_exists HAS_COMPOSE_URL $APP_COMPOSE_URL
 if [ "$HAS_COMPOSE_URL" == 1 ]; then
     _success "I found the app $APP_NAME on github"
+    CAN_INSTALL=1
 else
-    _error "The app $APP_NAME does not exist on the repository (did you spell it properly ?)"
-    _exit
+    _info "The app $APP_NAME does not have a docker-compose.yml"
 fi
 
 
 # Check if there is an installation script with it, if yes, run it
 _section "Check if the app $APP_NAME has a custom install script on github"
-_url_exists HAS_CUSTOM_URL $APP_CUSTOM_URL
+_url_file_exists HAS_CUSTOM_URL $APP_CUSTOM_URL
 if [ "$HAS_CUSTOM_URL" == 1 ]; then
     _success "I found a custom script for $APP_NAME on github"
+    CAN_INSTALL=1
 else
     _info "No custom install script for $APP_NAME"
+fi
+
+# Can we install ?
+_section "Check if we can install"
+if [ "$CAN_INSTALL" == 1 ]; then
+    _success "Yes, we can."
+else
+    _error "No, we cannot. The app is missing a docker-compose.yml or install.sh file."
+    _exit
 fi
 
 
@@ -237,7 +283,7 @@ if [ "$HAS_CUSTOM_URL" == 1 ]; then
     _download $APP_CUSTOM_URL
     _success "OK, script downloaded here: $APP_NAME/install.sh"
     chmod +x install.sh
-    ./install.sh
+    _source $APP_NAME install.sh
 else
     # DOWNLOAD COMPOSE
     _section "Download docker-compose file"
