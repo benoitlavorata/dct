@@ -19,11 +19,16 @@ _log "Admin password: $CUSTOM_ADMIN_PASSWORD"
 echo ""
 read -p 'Are you sure ? (y/n)' CUSTOM_CONFIG_CONFIRM
 
-_section "Building configuration"
-_log "Will now update the docker-compose.yml"
-sed -i -e "s/ADMIN_USER/$CUSTOM_ADMIN_USER/g" docker-compose.yml
-sed -i -e "s/ADMIN_PASSWORD/$CUSTOM_ADMIN_PASSWORD/g" docker-compose.yml
-_success "OK, configuration is done"
+if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
+    _section "Building configuration"
+    _log "Will now update the docker-compose.yml"
+    sed -i -e "s/ADMIN_USER/$CUSTOM_ADMIN_USER/g" docker-compose.yml
+    sed -i -e "s/ADMIN_PASSWORD/$CUSTOM_ADMIN_PASSWORD/g" docker-compose.yml
+    _success "OK, configuration is done"
 
-_create_compose_scripts
-_shortcuts_summary
+    _create_compose_scripts
+    _shortcuts_summary
+else
+   _error "OK, I cancel the installation. Remember to remove the files if not needed"
+   _exit
+fi
