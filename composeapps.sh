@@ -225,6 +225,7 @@ function _prompt {
         eval "$__sumary_names_var+=($__resultvar)"
     fi
 }
+
 function _break_line {
     echo ""
 }
@@ -248,9 +249,6 @@ fi
 APP_COMPOSE_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/docker-compose.yml"
 APP_CUSTOM_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/install.sh"
 APP_CAN_INSTALL=0
-
-_source $APP_NAME "install.sh"
-_exit
 
 # CHECK COMPOSE URL
 _section "Check if app has a docker-compose.yml: $APP_NAME"
