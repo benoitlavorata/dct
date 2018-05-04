@@ -6,7 +6,7 @@
 # COPY PASTE AT FRONT OF BASH SCRIPTS, KEEP THEM DEPENCY FREE
 
 # DEFINE LOG FUNCTION
-__DATE='date +%Y/%m/%d %H:%M:%S'
+__DATE='date +%Y%m%d-%H%M%S'
 __YEAR=`date +%Y`
 
 function _intro {
@@ -70,7 +70,7 @@ _info "Check if app exists on repository: $1"
 if curl --output /dev/null --silent --head --fail "$URL"; then
     _success "OK, the app exists"
 else
-    _fail "The app $1 does not exist on the repository (did you spell it properly ?)"
+    _error "The app $1 does not exist on the repository (did you spell it properly ?)"
     exit 1
 fi
 
