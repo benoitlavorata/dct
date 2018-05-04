@@ -6,7 +6,7 @@ CUSTOM_GIT_URL="https://github.com/sbglive/$CUSTOM_GIT_FOLDER.git"
 
 _section "Clone $CUSTOM_GIT_URL"
 git clone https://github.com/sbglive/dockprom.git
-mv "$CUSTOM_GIT_FOLDER/*" .
+eval "mv $CUSTOM_GIT_FOLDER/* ."
 _success "Cloned repository"
 
 _section "Configure your application"
