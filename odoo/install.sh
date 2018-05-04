@@ -6,12 +6,13 @@ _download $APP_COMPOSE_URL
 _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 _section "Configure your application"
-_log "Please answer the questions below"
-_log "About Odoo: "
+_break_line
+_log "1. About Odoo: "
 _prompt "Odoo Admin Password: " CUSTOM_ODOO_ADMIN_PASSWD CUSTOM_CONF_SUMMARY
 _prompt "Odoo port: " CUSTOM_ODOO_PORT CUSTOM_CONF_SUMMARY
 
-_log "About Postgresql: "
+_break_line
+_log "2. About Postgresql"
 _prompt "DB user: " CUSTOM_ODOO_DB_USER CUSTOM_CONF_SUMMARY
 _prompt "DB password: " CUSTOM_ODOO_DB_PASSWORD CUSTOM_CONF_SUMMARY
 _prompt "DB port: " CUSTOM_DB_PORT CUSTOM_CONF_SUMMARY
