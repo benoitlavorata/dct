@@ -11,8 +11,8 @@ _success "Cloned repository"
 
 _section "Configure your application"
 _log "Please answer the questions below"
-_prompt "Admin login: " CUSTOM_ADMIN_USER CUSTOM_CONF_SUMMARY
-_prompt "Admin password: " CUSTOM_ADMIN_PASSWORD CUSTOM_CONF_SUMMARY
+_prompt "Admin login: " ADMIN_USER CUSTOM_CONF_SUMMARY
+_prompt "Admin password: " ADMIN_PASSWORD CUSTOM_CONF_SUMMARY
 
 _section "Confirm your inputs"
 _log "Your settings:"

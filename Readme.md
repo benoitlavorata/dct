@@ -11,10 +11,31 @@ If you want to easily install on your server/computer, you can use a small batch
 Replace "shadowsocks" by the folder name of the app name you wish to use.
 ```bash
 rm composeapps.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/composeapps.sh && chmod +x composeapps.sh
+wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
+
+# TO INSTALL SHADOWSOCKS
 ./composeapps.sh shadowsocks
 cd shadowsocks
 ./up.sh
+
+```
+
+## How to use this script as a command line anywhere on your system ?
+If you want to be able to run this script easily, anywhere on your system, move it to your $PATH like below:
+
+```bash
+cd ~/ && mkdir bin
+cp ~/.bash_profile ~/.bash_profile.compose.backup
+echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile 
+cd ~/bin
+rm composeapps.sh
+wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
+mv compose.sh compose
+```
+
+Now you can install any applications from this command:
+```bash
+compose shadowsocks
 ```
 
 ## Make it your own ? Contribute
@@ -31,6 +52,7 @@ Feel free to fork, clone or contribute !
 - [wordpress](#wordpress)
 - [production_server](#production_server)
 - [elk](#elk)
+- [monitor](#monitor)
 
 ## shadowsocks
 Description: VPN
