@@ -49,7 +49,6 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     done
 
     _log "Will now create the Dockerfile for $CUSTOM_IMAGE_NAME"
-    rm "$CUSTOM_IMAGE_NAME.Dockerfile"
     cp "Dockerfile" "$CUSTOM_IMAGE_NAME.Dockerfile"
 
     _log "Replace config into Dockerfile"
@@ -76,7 +75,7 @@ _log "Create build.sh script"
 echo -e "#!/bin/bash" > build.sh
 echo -e "echo -e Will now build $CUSTOM_IMAGE_NAME ..." >> build.sh
 echo -e "docker build -f $CUSTOM_IMAGE_NAME.Dockerfile -t $CUSTOM_IMAGE_NAME ." >> build.sh
-chmod +x up.sh
+chmod +x build.sh
 
 _log "Create run.sh script"
 echo -e "#!/bin/bash" > run.sh
