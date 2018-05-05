@@ -31,7 +31,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _log "Replace config into docker-compose.yml"
     for index in ${!CUSTOM_CONFIG_NAMES[*]} 
     do
-       sed -i -e "s/${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
+       sed -i -e "s/CUSTOM_${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
     done
     _success "OK, configuration is done"
 
