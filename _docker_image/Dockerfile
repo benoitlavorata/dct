@@ -20,4 +20,4 @@ RUN .${IMAGE_INSTALL_DIR}/install.sh
 ENV DEBIAN_FRONTEND teletype
 
 EXPOSE CUSTOM_EXPOSED_PORTS
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint/boot.sh"]
