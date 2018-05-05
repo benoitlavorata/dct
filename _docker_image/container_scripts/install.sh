@@ -9,12 +9,12 @@ _quit_if_not_root "You cannot start this script without being root"
 
 
 _section "Create entrypoint file and folder"
-_log "Create folder ${ENTRYPOINT_FOLDER}"
-mkdir ${ENTRYPOINT_FOLDER}
-mkdir ${ENTRYPOINT_FOLDER}/apps
+_log "Create folder ${ENTRYPOINT_DIR}"
+mkdir ${ENTRYPOINT_DIR}
+mkdir ${ENTRYPOINT_DIR}/apps
 _log "Copy entrypoint files"
-cp "${IMAGE_INSTALL_DIR}/boot.sh" "${ENTRYPOINT_FOLDER}"
-cp "${IMAGE_INSTALL_DIR}/helpers.sh" "${ENTRYPOINT_FOLDER}"
+cp "${IMAGE_INSTALL_DIR}/boot.sh" "${ENTRYPOINT_DIR}"
+cp "${IMAGE_INSTALL_DIR}/helpers.sh" "${ENTRYPOINT_DIR}"
 
 
 _section "Will install custom apps"
@@ -45,8 +45,8 @@ do
 done
 
 _section "Make all boot files executable"
-chmod +x ${ENTRYPOINT_FOLDER}/*.sh
-chmod +x ${ENTRYPOINT_FOLDER}/apps/*.sh
+chmod +x ${ENTRYPOINT_DIR}/*.sh
+chmod +x ${ENTRYPOINT_DIR}/apps/*.sh
 
 _success "All has been installed !"
 _exit

@@ -12,6 +12,7 @@ _success "Installed"
 _section "Use docker without sudo"
 sudo groupadd docker
 sudo gpasswd -a $USER docker
+sudo service docker restart
 _success "Changed permissions"
 
 _section "Remove install files"

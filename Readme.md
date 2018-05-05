@@ -10,11 +10,11 @@ For windows users, do not loose your time here.
 If you want to easily install on your server/computer, you can use a small batch script as described below.
 Replace "shadowsocks" by the folder name of the app name you wish to use.
 ```bash
-rm composeapps.sh
+rm compose.sh
 wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
 
 # TO INSTALL SHADOWSOCKS
-./composeapps.sh shadowsocks
+./compose.sh shadowsocks
 cd shadowsocks
 ./up.sh
 ```
@@ -27,14 +27,14 @@ cd ~/ && mkdir bin
 cp ~/.bash_profile ~/.bash_profile.compose.backup
 echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile 
 cd ~/bin
-rm composeapps.sh
+rm compose.sh
 wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
-mv compose.sh compose
+mv compose.sh app
 ```
 
 Now you can install any applications from this command:
 ```bash
-compose shadowsocks
+app shadowsocks
 ```
 
 ## Make it your own ? Contribute

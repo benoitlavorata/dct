@@ -37,6 +37,15 @@ chmod +x compose.sh
 mv compose.sh app
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
+
+_log "Install docker"
+app _docker
+# /etc/docker/daemon.json
+# {
+#  "registry-mirrors": ["https://registry.docker-cn.com"]
+# }
+
+
 _section "Remove $APP_NAME files"
 cd .. 
 rm -r $APP_NAME
