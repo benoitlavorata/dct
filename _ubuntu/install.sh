@@ -10,15 +10,19 @@ _break_line
 
 _log "Update"
 sudo apt-get update
+_break_line
 
 _log "Upgrade"
 sudo apt-get upgrade -y
+_break_line
 
 _log "Install ubuntu packages"
 sudo apt-get install $PACKAGE_LIST
+_break_line
 
 _log "Install npm packages (global)"
 sudo npm install -g $NPM_LIST
+_break_line
 
 _success "Installed"
 
