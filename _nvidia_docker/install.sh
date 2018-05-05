@@ -27,3 +27,8 @@ _section "Install deps"
 docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 _success "started nvidia/cuda"
 
+
+_section "Remove install files"
+cd .. 
+rm -r _nvidia_docker
+_success "removed files"

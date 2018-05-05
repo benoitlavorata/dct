@@ -84,3 +84,9 @@ echo -e "#!/bin/bash" > run.sh
 echo -e "echo -e Will now run $CUSTOM_IMAGE_NAME ..." >> run.sh
 echo -e "docker run -it --rm --name=$CUSTOM_IMAGE_NAME $CUSTOM_IMAGE_NAME" >> run.sh
 chmod +x run.sh
+
+
+_section "Rename install files"
+cd .. 
+mv _docker_image "$CUSTOM_IMAGE_NAME"
+_success "removed files"
