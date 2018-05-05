@@ -17,7 +17,6 @@ wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmo
 ./composeapps.sh shadowsocks
 cd shadowsocks
 ./up.sh
-
 ```
 
 ## How to use this script as a command line anywhere on your system ?

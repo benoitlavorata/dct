@@ -35,79 +35,80 @@ __COLOR_DEBUG=$__GREY
 __COLOR_ERROR=$__RED
 __COLOR_SUCCESS=$__GREEN
 __COLOR_SECTION=$__WHITE
+__COLOR_LOG=$__LIGHTGRAY
 
 # DEFINE LOG FUNCTION
 __DATE='date +%Y%m%d-%H%M%S'
 __YEAR=`date +%Y`
 __PREFIX=$(echo -en $__COLOR_DATE`$__DATE`" | "$__NC)
-__INDENT="    "
+__INDENT="   "
 __LINE="--------------------------------"
 
 function _intro {
-    echo -e "$__COLOR_INTRO$__LINE"
-    echo -e "INSTALL APPS: $1"
-    echo -e "INTO: $2"
-    echo -e "By Benoit Lavorata, $__YEAR"
-    echo -e "$__LINE$__NC"
+    echo -e "${__COLOR_INTRO}${__LINE}"
+    echo -e "INSTALL APPS: $1$"
+    echo -e "INTO: $2$"
+    echo -e "By Benoit Lavorata, ${__YEAR}"
+    echo -e "${__LINE}${NC}"
 }
 function _sub_intro {
     echo -e "${__COLOR_SUB_INTRO}"
     echo -e "APP: $1"
     echo -e "INTO: $2/$1"
-    echo -e "$__LINE$__NC"
+    echo -e "${__LINE}${NC}"
 }
 
 function _exit {
-    echo -e "$__COLOR_INTRO"
-    echo -e $__LINE
+    echo -e "${__COLOR_INTRO}"
+    echo -e ${__LINE}
     echo -e "Thank you for using the compose script !"
     echo -e "Cheers, Benoit Lavorata."
     echo -e " "
     echo -e "Buy me a coffee ?"
     echo -e  "ETH: 0xdAFd17d20DcBdB24A29A073c350B7e719f45ce3D"
     echo -e  "AION: a0f0886adb7ea587db2283f902efc504304277802cb1d75dffddfc0979667e40"
-    echo -e $__LINE
-    echo -e "$__NC"
+    echo -e ${__LINE}
+    echo -e "${__NC}"
     exit 1
 }
 
 function _log {
-    echo -e $__PREFIX"$__INDENT$1"
+    echo -e ${__PREFIX}${__COLOR_LOG}"$1"${NC}
 }
 function _log1 {
-    echo -e $__PREFIX"$__INDENT$__INDENT$1"
+    _log "${__INDENT}$1"
 }
 function _log2 {
-    echo -e $__PREFIX"$__INDENT$__INDENT$__INDENT$1"
+    _log1 "${__INDENT}$1"
 }
 function _log3 {
-    echo -e $__PREFIX"$__INDENT$__INDENT$__INDENT$__INDENT$1"
+    _log2 "${__INDENT}$1"
 }
 
 function _debug {
-    echo -e $__PREFIX"$__COLOR_DEBUG$__INDENT[DEBUG]$__NC $1"
+    echo -e ${__PREFIX}${__COLOR_DEBUG}"${__INDENT}[DEBUG] $1"${NC}
 }
 function _info {
-    echo -e $__PREFIX"$__COLOR_INFO$__INDENT[INFO]$__NC $1"
+    echo -e ${__PREFIX}${__COLOR_INFO}"${__INDENT}[INFO] $1"${NC}
 }
 function _error {
-    echo -e $__PREFIX"$__COLOR_ERROR$__INDENT[ERROR]$__NC $1"
+    echo -e ${__PREFIX}${__COLOR_ERROR}"${__INDENT}[ERROR] $1"${NC}
 }
 function _success {
-    echo -e $__PREFIX"$__COLOR_SUCCESS$__INDENT[SUCCESS]$__NC $1"
+    echo -e ${__PREFIX}${__COLOR_SUCCESS}"${__INDENT}[SUCCESS] $1"${NC}
 }
 
 function _section {
     echo -e " "
-    echo -e $__PREFIX"$__COLOR_SECTION--- $1 ---$__NC"
+    echo -e $__PREFIX"${__COLOR_SECTION}--- $1 ---${__NC}"
 }
 
 function _source {
     echo -e " "
-    echo -e $__PREFIX"$__COLOR_INFO--- CUSTOM SCRIPT FOR $1 ---$__NC"
+    echo -e $__PREFIX"${__COLOR_INFO}--- CUSTOM SCRIPT FOR $1 ---${__NC}"
     source $2
     echo -e " "
-    echo -e $__PREFIX"$__COLOR_INFO--- END OF CUSTOM SCRIPT ---$__NC"
+    echo -e $__PREFIX"${__COLOR_INFO}--- END OF CUSTOM SCRIPT ---${__NC}"
 }
 
 function _quit_if_not_root {
