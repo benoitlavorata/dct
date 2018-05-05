@@ -15,7 +15,7 @@ _success "Cloned repository"
 
 _section "Read Default config"
 CUSTOM_IMAGE_NAME="DOCKER_BOILERPLATE"
-#_add_custom_config "IMAGE_NAME" "$CUSTOM_IMAGE_NAME"
+_add_custom_config "IMAGE_NAME" "$CUSTOM_IMAGE_NAME"
 #_add_custom_config "IMAGE_INSTALL_SCRIPTS" "NONE"
 #_add_custom_config "MIRRORS_LOCATION" "CHINA"
 #_add_custom_config "MIRRORS_APT_CHINA" "DEFAULT"
