@@ -1,4 +1,3 @@
-#!/bin/bash
 
 #################################################################
 ### HELPERS V2 ### THE MAGIC PART IS AFTER THE END OF HELPERS ###
@@ -117,16 +116,33 @@ function _source {
 }
 
 function _quit_if_not_root {
-    echo -e " "
     #CHECK THAT WE ARE ROOT
-    _info "Log in as root"
+    _log "Log in as root"
     if [[ $EUID -ne 0 ]]; then
         _error $1
-        _exit
-        _quit
+        exit 1
     fi
     _success "Log in as root"
 }
+
+
+function _file_exists {
+    local  __resultvar=$1
+    local  __inputvar=$2
+    local  __result=0
+
+    _log "Does file $__inputvar exist ?"
+    if [ -f "$__inputvar" ]; then
+        _log1 "Yes, the file exists"
+        __result=1
+    else
+        _log1 "No, the file does not exist"
+        __result=0
+    fi
+
+    eval $__resultvar="'$__result'"
+}
+
 
 function _folder_exists {
     local  __resultvar=$1
@@ -387,45 +403,3 @@ function _script_dir {
     local  __resultvar=$1
     eval $__resultvar="'${BASH_SOURCE[0]}'"
 }
-
-#################################################################
-### END OF HELPERS ### THE MAGIC PART GOES BELOW (HOPEFULLY)  ###
-#################################################################
-# CLEAN THE STDOUT
-_clear
-
-# GET CURRENT DIR PATH
-_working_dir SCRIPT_WORKING_DIR_PATH
-_script_dir SCRIPT_DIR_PATH
-
-# CHECK IF WE HAVE ARGS
-if [ -z ${1+x} ]; 
-then 
-    _intro "NO APPS NAME"
-    _error "You did not set any app name in argument. Try again."
-    _exit
-    _quit
-fi
-
-# GET PROVIDED ARGS INTO ARRAY
-__ARGS=()
-for var in "$@" 
-do
-    __ARGS+=("$var")
-done
-
-# GIVE INTRODUCTION
-_intro "${__ARGS[*]}"
-
-
-# LAUNCH THE SCRIPT AS MANY TIME AS NECESSARY
-for index in ${!__ARGS[*]} 
-do
-    #_log1 "$index: ${__ARGS[$index]}"
-    cd $SCRIPT_WORKING_DIR_PATH
-    _install "${__ARGS[$index]}"
-done
-
-# EXIT
-_exit
-_quit

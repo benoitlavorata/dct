@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #INCLUDE HELPERS AND PRINT SECTION TITLE
-source "${DOCKER_INSTALL_DIR}/helpers.sh"
+source "${INSTALL_DIR}/helpers.sh"
 _section "Locales: TO RE-CHECK"
 
 

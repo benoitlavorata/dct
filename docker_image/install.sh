@@ -15,14 +15,15 @@ _success "Cloned repository"
 
 _section "Read Default config"
 CUSTOM_IMAGE_NAME="DOCKER_BOILERPLATE"
-_add_custom_config "IMAGE_NAME" "$CUSTOM_IMAGE_NAME"
-_add_custom_config "MIRRORS_LOCATION" "CHINA"
-_add_custom_config "MIRRORS_APT_CHINA" "DEFAULT"
-_add_custom_config "UBUNTU_ADDITIONAL_DEP" "NONE"
-_add_custom_config "APT_UPGRADE" "YES"
-_add_custom_config "SSH_ENABLED" "YES"
-_add_custom_config "SSH_LOGIN" "root"
-_add_custom_config "SSH_PASS" "1234"
+#_add_custom_config "IMAGE_NAME" "$CUSTOM_IMAGE_NAME"
+#_add_custom_config "IMAGE_INSTALL_SCRIPTS" "NONE"
+#_add_custom_config "MIRRORS_LOCATION" "CHINA"
+#_add_custom_config "MIRRORS_APT_CHINA" "DEFAULT"
+#_add_custom_config "UBUNTU_ADDITIONAL_DEP" "NONE"
+#_add_custom_config "APT_UPGRADE" "YES"
+#_add_custom_config "SSH_ENABLED" "YES"
+#_add_custom_config "SSH_LOGIN" "root"
+#_add_custom_config "SSH_PASS" "1234"
 _add_custom_config "EXPOSED_PORTS" "22"
 _success "Got the defaults values"
 
@@ -65,6 +66,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
 else
    _error "OK, I cancel the installation. Remember to remove the files if not needed"
    _exit
+   _quit
 fi
 
 #    _create_compose_scripts
@@ -79,6 +81,6 @@ chmod +x build.sh
 
 _log "Create run.sh script"
 echo -e "#!/bin/bash" > run.sh
-echo -e "echo -e Will now build $CUSTOM_IMAGE_NAME ..." >> run.sh
+echo -e "echo -e Will now run $CUSTOM_IMAGE_NAME ..." >> run.sh
 echo -e "docker run -it --rm --name=$CUSTOM_IMAGE_NAME $CUSTOM_IMAGE_NAME" >> run.sh
 chmod +x run.sh
