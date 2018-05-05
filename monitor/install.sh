@@ -12,7 +12,7 @@ _success "Cloned repository"
 
 _section "Read Default config"
 _add_custom_config "ADMIN_USER" "admin"
-_add_custom_config "ADMIN_PASSWORD" "admin"
+_add_custom_config "ADMIN_PASSWORD" "1234"
 _success "Got the defaults values"
 
 _section "Configure your application"
@@ -31,7 +31,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _log "Replace config into docker-compose.yml"
     for index in ${!CUSTOM_CONFIG_NAMES[*]} 
     do
-       sed -i -e "s/=${CUSTOM_CONFIG_NAMES[$index]}/=${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
+       sed -i -e "s/${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
     done
     _success "OK, configuration is done"
 
