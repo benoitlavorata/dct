@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGE_LIST="vim docker docker-compose gcc build-essential nodejs npm wget curl"
+PACKAGE_LIST="vim docker docker-compose gcc build-essential nodejs npm wget curl jq"
 NPM_LIST="forever n"
 
 _section "Install usual packages (personal use)"
@@ -45,6 +45,11 @@ app _docker
 #  "registry-mirrors": ["https://registry.docker-cn.com"]
 # }
 
+_log "Start SSH and gen custom keys"
+sudo service ssh restart
+ssh-keygen -t rsa -b 4096 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
 
 _section "Remove $APP_NAME files"
 cd .. 

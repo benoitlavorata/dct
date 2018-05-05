@@ -15,8 +15,10 @@ apt-get install -y -qq bzip2 curl jq wget > /dev/null
 
 _log "get miner version $MINER_VERSION(be patient)"
 cd /opt
-curl -s https://api.github.com/repos/aionnetwork/aion_miner/releases/tags/$MINER_VERSION | jq --raw-output '.assets[1] | .browser_download_url' | xargs wget -O aionminer_CPU.tar.bz2
+https://api.github.com/repos/aionnetwork/aion_miner/releases/tags/v0.2.2
+curl -s "https://api.github.com/repos/aionnetwork/aion_miner/releases/tags/$MINER_VERSION" | jq --raw-output '.assets[0] | .browser_download_url' | xargs wget -O aionminer_CPU.tar.bz2
 
+v0.2.2
 _log "Extract"
 tar -xvjf ./aionminer_CPU.tar.bz2 >/dev/null
 
