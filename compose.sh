@@ -36,6 +36,8 @@ __COLOR_ERROR=$__RED
 __COLOR_SUCCESS=$__GREEN
 __COLOR_SECTION=$__WHITE
 __COLOR_LOG=$__LIGHTGRAY
+__COLOR_PROMPT=$__YELLOW
+__COLOR_PROMPT_ANSWER=$__LCYAN
 
 # DEFINE LOG FUNCTION
 __DATE='date +%Y%m%d-%H%M%S'
@@ -219,7 +221,53 @@ function _download {
     _log1 "Downloaded file"
 }
 
+function _add_custom_config {
+    local __resultvar=$1
+    local __defaultval=$2
+
+    # Set var to value
+    #eval $__resultvar="'$__result'"
+
+    # Append to CUSTOM_CONFIG
+    eval CUSTOM_CONFIG_NAMES+=("$__resultvar")
+    eval CUSTOM_CONFIG_VALUES+=("$__defaultval")
+}
+
+function _display_custom_config {
+    for index in ${!CUSTOM_CONFIG_NAMES[*]} 
+    do
+       _log1 "${index}. ${CUSTOM_CONFIG_NAMES[$index]}  =  ${CUSTOM_CONFIG_VALUES[$index]}"
+    done
+}
+
+function _prompt_custom_config {
+    local __question=$1
+
+    _log "$1"
+    _break_line
+
+    for index in ${!CUSTOM_CONFIG_NAMES[*]} 
+    do
+        # Prompt user
+        local _var_name="CUSTOM_CONFIG_${CUSTOM_CONFIG_NAMES[$index]}"
+        _prompt "${__COLOR_PROMPT}${index}. ${CUSTOM_CONFIG_NAMES[$index]} (default ${CUSTOM_CONFIG_VALUES[$index]}) ? ${__COLOR_PROMPT_ANSWER}" "$_var_name"
+
+        if [ "${!_var_name}" != "" ]; then
+            # KEEP USER INPUT
+            CUSTOM_CONFIG_VALUES[$index]=${!_var_name}
+        fi
+    done
+    _log "${__NC}"
+}
+
 function _prompt {
+    local __question=$1
+    local __resultvar=$2
+    read -p "$__PREFIX$__INDENT$__question" __result
+    eval $__resultvar="'$__result'"
+}
+
+function TODO_prompt {
     local __question=$1
     local __resultvar=$2
     local __summary_var=$3
@@ -321,6 +369,7 @@ function _install {
 }
 
 function _clear {
+    clear
     _break_line
     _break_line
     _break_line
@@ -338,7 +387,6 @@ function _script_dir {
 #################################################################
 ### END OF HELPERS ### THE MAGIC PART GOES BELOW (HOPEFULLY)  ###
 #################################################################
-
 # CLEAN THE STDOUT
 _clear
 
