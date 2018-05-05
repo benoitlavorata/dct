@@ -56,10 +56,6 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     for index in ${!CUSTOM_CONFIG_NAMES[*]} 
     do
        sed -i -e "s/CUSTOM_${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "$CUSTOM_IMAGE_NAME.Dockerfile"
-       
-        if [ "${CUSTOM_CONFIG_NAMES[$index]}" == "IMAGE_NAME" ]; then
-            CUSTOM_IMAGE_NAME="${CUSTOM_CONFIG_VALUES[$index]}"
-        fi
     done
     _success "OK, configuration is done"
 
