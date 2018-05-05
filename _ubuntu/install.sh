@@ -18,7 +18,7 @@ _log "Install ubuntu packages"
 sudo apt-get install $PACKAGE_LIST
 
 _log "Install npm packages (global)"
-sudo apt-get install $PACKAGE_LIST
+sudo npm install -g $NPM_LIST
 
 _success "Installed"
 
