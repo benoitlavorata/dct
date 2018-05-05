@@ -71,9 +71,6 @@ function _exit {
     echo -e  "AION: a0f0886adb7ea587db2283f902efc504304277802cb1d75dffddfc0979667e40"
     echo -e ${__LINE}
     echo -e "${__NC}"
-}
-
-function _quit {
     exit 1
 }
 
@@ -122,8 +119,7 @@ function _quit_if_not_root {
     _info "Log in as root"
     if [[ $EUID -ne 0 ]]; then
         _error $1
-        _exit
-        _quit
+        exit 1
     fi
     _success "Log in as root"
 }
@@ -296,7 +292,7 @@ function _install {
     #CHECK IF WE HAVE ARG
     if [ -z ${1+x} ]; 
     then 
-        _sub_intro "NO APPS NAME"
+        _sub_intro "NO APPS NAME" $SCRIPT_WORKING_DIR_PATH
         _error "You did not set any app name in argument. Try again."
         return 0
     else 
@@ -309,16 +305,6 @@ function _install {
     APP_CUSTOM_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/install.sh"
     APP_CAN_INSTALL=0
 
-    # CHECK COMPOSE URL
-    _section "Check if app has a docker-compose.yml: $APP_NAME"
-    _url_file_exists APP_HAS_COMPOSE_URL $APP_COMPOSE_URL
-    if [ "$APP_HAS_COMPOSE_URL" == 1 ]; then
-        _success "I found the app $APP_NAME on github"
-        APP_CAN_INSTALL=1
-    else
-        _info "The app $APP_NAME does not have a docker-compose.yml"
-    fi
-
 
     # Check if there is an installation script with it, if yes, run it
     _section "Check if the app $APP_NAME has a custom install script on github"
@@ -328,6 +314,17 @@ function _install {
         APP_CAN_INSTALL=1
     else
         _info "No custom install script for $APP_NAME"
+
+        # CHECK COMPOSE URL
+        _section "Check if app has a docker-compose.yml: $APP_NAME"
+        _url_file_exists APP_HAS_COMPOSE_URL $APP_COMPOSE_URL
+        if [ "$APP_HAS_COMPOSE_URL" == 1 ]; then
+            _success "I found the app $APP_NAME on github"
+            APP_CAN_INSTALL=1
+        else
+            _info "The app $APP_NAME does not have a docker-compose.yml"
+        fi
+
     fi
 
     # Can we install ?
@@ -352,7 +349,6 @@ function _install {
         cd $APP_NAME
         _success "Folder $APP_NAME created"
     fi
-
 
     # DOWLOAD SCRIPTS/COMPOSE FILE
     if [ "$APP_HAS_CUSTOM_URL" == 1 ]; then
@@ -401,10 +397,9 @@ _script_dir SCRIPT_DIR_PATH
 # CHECK IF WE HAVE ARGS
 if [ -z ${1+x} ]; 
 then 
-    _intro "NO APPS NAME"
+    _intro "NO APPS NAME" "$SCRIPT_WORKING_DIR_PATH"
     _error "You did not set any app name in argument. Try again."
     _exit
-    _quit
 fi
 
 # GET PROVIDED ARGS INTO ARRAY
@@ -415,8 +410,7 @@ do
 done
 
 # GIVE INTRODUCTION
-_intro "${__ARGS[*]}"
-
+_intro "${__ARGS[*]}" "$SCRIPT_WORKING_DIR_PATH"
 
 # LAUNCH THE SCRIPT AS MANY TIME AS NECESSARY
 for index in ${!__ARGS[*]} 
@@ -428,4 +422,3 @@ done
 
 # EXIT
 _exit
-_quit
