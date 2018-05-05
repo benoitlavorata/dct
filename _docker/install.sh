@@ -9,8 +9,13 @@ sudo apt-get update
 sudo apt-get install docker docker-compose -y
 _success "Installed"
 
+_section "Use docker without sudo"
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+_success "Changed permissions"
+
 _section "Remove install files"
 cd .. 
-rm -r _docker
+rm -r $APP_NAME
 _success "removed files"
 
