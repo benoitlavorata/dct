@@ -4,7 +4,7 @@
 CUSTOM_GIT_FOLDER="compose"
 CUSTOM_GIT_ACCOUNT="sbglive"
 CUSTOM_GIT_URL="https://github.com/$CUSTOM_GIT_ACCOUNT/$CUSTOM_GIT_FOLDER.git"
-CUSTOM_KEEP_GIT_FOLDER="docker_image"
+CUSTOM_KEEP_GIT_FOLDER="_docker_image"
 
 _section "Clone $CUSTOM_GIT_URL"
 git clone https://github.com/$CUSTOM_GIT_ACCOUNT/$CUSTOM_GIT_FOLDER.git
@@ -88,5 +88,5 @@ chmod +x run.sh
 
 _section "Rename install files"
 cd .. 
-mv _docker_image "$CUSTOM_IMAGE_NAME"
+mv "$APP_NAME" "$CUSTOM_IMAGE_NAME"
 _success "removed files"
