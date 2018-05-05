@@ -8,8 +8,8 @@ CUSTOM_KEEP_GIT_FOLDER="docker_image"
 
 _section "Clone $CUSTOM_GIT_URL"
 git clone https://github.com/$CUSTOM_GIT_ACCOUNT/$CUSTOM_GIT_FOLDER.git
-eval "mv $CUSTOM_GIT_FOLDER/$CUSTOM_KEEP_GIT_FOLDER/install/ ."
-eval "mv $CUSTOM_GIT_FOLDER/$CUSTOM_KEEP_GIT_FOLDER/install/Dockerfile ."
+eval "mv $CUSTOM_GIT_FOLDER/$CUSTOM_KEEP_GIT_FOLDER/container_install/ ."
+eval "mv $CUSTOM_GIT_FOLDER/$CUSTOM_KEEP_GIT_FOLDER/install/container_install ."
 eval "sudo rm -r $CUSTOM_GIT_FOLDER/"
 _success "Cloned repository"
 
