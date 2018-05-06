@@ -1,17 +1,13 @@
 #!/bin/bash
 
 _section "Remove old versions"
-sudo apt-get remove docker docker-engine docker.io docker-compose
+sudo apt-get remove -y docker docker-engine docker.io docker-compose
 _success "removed old versions"
 
 _section "Install"
-sudo apt-get update
 #sudo apt-get install docker docker-compose -y
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -20,7 +16,7 @@ sudo apt-get install \
    $(lsb_release -cs) \
    stable"
    sudo apt-get update
-   sudo apt-get install docker-ce
+   sudo apt-get install -y docker-ce
 _success "Installed"
 
 
