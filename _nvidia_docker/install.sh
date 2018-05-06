@@ -28,6 +28,19 @@ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 _success "started nvidia/cuda"
 
 
+_section "Use docker with chinese mirrors"
+sudo su
+cp "/etc/docker/daemon.json" "/etc/docker/daemon.json.backup"
+sed -i '$ d' "/etc/docker/daemon.json"
+sed -i '${s/$/,/}' /etc/docker/daemon.json
+echo '"registry-mirrors": ["https://registry.docker-cn.com"]' >> "/etc/docker/daemon.json"
+echo '}' >> "/etc/docker/daemon.json"
+exit
+cat "/etc/docker/daemon.json"
+sudo service docker restart
+_success "Docker chinese mirrors"
+
+
 _section "Remove install files"
 cd .. 
 rm -r _nvidia_docker

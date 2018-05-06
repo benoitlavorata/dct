@@ -1,4 +1,5 @@
 #!/bin/bash
+#"default-runtime": "nvidia"
 
 #VARIABLES
 CUSTOM_GIT_FOLDER="dockprom"

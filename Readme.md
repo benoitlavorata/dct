@@ -5,20 +5,6 @@ I only tested these scripts on ubuntu 16.04, not sure it will work for everyone.
 For windows users, do not loose your time here.
 
 
-
-## How to quickly use on your server ?
-If you want to easily install on your server/computer, you can use a small batch script as described below.
-Replace "shadowsocks" by the folder name of the app name you wish to use.
-```bash
-rm compose.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
-
-# TO INSTALL SHADOWSOCKS
-./compose.sh shadowsocks
-cd shadowsocks
-./up.sh
-```
-
 ## How to use this script as a command line anywhere on your system ?
 If you want to be able to run this script easily, anywhere on your system, move it to your $PATH like below:
 

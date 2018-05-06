@@ -1,0 +1,10 @@
+version: "3"
+services:
+  gpu-miner:
+    image: blavorata/aion-smartminer:latest
+    environment:
+     -  MINING_POOL_ADDRESS=solo-mining-pool
+     -  MINING_POOL_PORT=3333
+     -  MINING_ADDRESS=xvin3t_smartminer
+    links:
+     -  solo-mining-pool
