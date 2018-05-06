@@ -22,7 +22,7 @@ sudo apt-get install -y nvidia-docker2
 sudo pkill -SIGHUP dockerd
 _success "Installed nvidia-docker2"
 
-_section "Install deps"
+_section "Run Nvidia/cuda container"
 # Test nvidia-smi with the latest official CUDA image
 docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 _success "started nvidia/cuda"
