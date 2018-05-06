@@ -25,7 +25,7 @@ RUN rm /etc/apt/sources.list.d/cuda.list /etc/apt/sources.list.d/nvidia-ml.list 
 WORKDIR /opt
 
 # example: https://api.github.com/repos/smartbitcoin/SmartMiner/releases/tags/v3.1
-RUN curl -s https://api.github.com/repos/${MINER_GIT}/releases/tags/${MINER_VERSION} | jq --raw-output '.assets[2] | .browser_download_url' | xargs wget -O aion_smartminer.tar.bz2
+RUN curl -s https://api.github.com/repos/${MINER_GIT}/releases/tags/${MINER_VERSION} | jq --raw-output '.assets[0] | .browser_download_url' | xargs wget -O aion_smartminer.tar.bz2
 RUN tar -xvjf ./aion_smartminer.tar.bz2
 
 # start GPU Miner
