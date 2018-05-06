@@ -13,8 +13,8 @@ chmod +x compose.sh
 mv compose.sh app
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
-_log "Install ubuntu pref"
-app _ubuntu
+_log "Start install !"
+app _ubuntu _nvidia_driver
 
 _section "Remove $APP_NAME files"
 cd .. 
