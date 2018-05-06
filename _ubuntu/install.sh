@@ -47,10 +47,16 @@ app _docker portainer cloud9 monitor
 _log "Start portainer, cloud9, monitor"
 cd portainer
 ./up.sh
+_log1 "Portainer should be running here: http://127.0.0.1:9000/"
+
 cd cloud9
 ./up.sh
+_log1 "Cloud9 should be running here: http://127.0.0.1:8181/"
+
 cd monitor
 ./up.sh
+_log1 "Monitor should be running here: http://127.0.0.1:3000/"
+_break_line
 
 _log "Start SSH and gen custom keys"
 sudo service ssh restart
