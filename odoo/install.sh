@@ -41,7 +41,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _shortcuts_summary
 
     _break_line
-    _prompt 'Do you want me to start it now ?' CUSTOM_START_CONFIRM
+    _prompt 'Do you want me to start it now (y/n) ?' CUSTOM_START_CONFIRM
     _break_line
 
     if [ "$CUSTOM_START_CONFIRM" == "y" ]; then
