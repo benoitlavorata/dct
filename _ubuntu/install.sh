@@ -20,7 +20,7 @@ sudo apt-get upgrade -y
 _break_line
 
 _log "Install ubuntu packages"
-sudo apt-get install $PACKAGE_LIST
+sudo apt-get install -y $PACKAGE_LIST
 _break_line
 
 _log "Install npm packages (global)"
