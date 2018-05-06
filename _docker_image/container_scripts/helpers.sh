@@ -389,7 +389,7 @@ function _install {
 }
 
 function _clear {
-    clear
+    #clear
     _break_line
     _break_line
     _break_line
