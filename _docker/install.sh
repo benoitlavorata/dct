@@ -4,21 +4,26 @@ _section "Remove old versions"
 sudo apt-get remove -y docker docker-engine docker.io docker-compose
 _success "removed old versions"
 
-_section "Install"
+_section "Install Deps"
 #sudo apt-get install docker docker-compose -y
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+_success "Installed Deps"
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-   sudo apt-get update
-   sudo apt-get install -y docker-ce
-_success "Installed"
 
+_section "Add docker rep and key"
+curl -fsSL "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/gpg" | sudo apt-key add -
+sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+sudo apt-get update
+_success "Add docker rep and key"
+    
+_section "Install docker-ce"
+sudo apt-get install -y docker-ce
+_success "Install docker-ce"
 
 _section "Use docker with chinese mirrors"
 _download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/daemon.json"
