@@ -1,19 +1,16 @@
 #!/bin/bash
+#"default-runtime": "nvidia"
+
+_section "Download docker-compose file"
+_download $APP_COMPOSE_URL
+_success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
-CUSTOM_GIT_FOLDER="dockprom"
-CUSTOM_GIT_URL="https://github.com/sbglive/$CUSTOM_GIT_FOLDER.git"
-
-_section "Clone $CUSTOM_GIT_URL"
-git clone https://github.com/sbglive/dockprom.git
-eval "mv $CUSTOM_GIT_FOLDER/* ."
-_success "Cloned repository"
-
-
 _section "Read Default config"
-_add_custom_config "ADMIN_USER" "admin"
-_add_custom_config "ADMIN_PASSWORD" "1234"
-_add_custom_config "STATS_PORT" "3000"
+_add_custom_config "LOGIN" "admin"
+_add_custom_config "PASSWORD" "password"
+_add_custom_config "WORKSPACE_DIR" "~/"
+_add_custom_config "PORT" "8181"
 _success "Got the defaults values"
 
 _section "Configure your application"
@@ -34,6 +31,10 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     do
        sed -i -e "s/CUSTOM_${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
     done
+
+    sed -i -e "s/CUSTOM_UID/$UID/g" "docker-compose.yml"
+    
+
     _success "OK, configuration is done"
     _create_compose_scripts
     _shortcuts_summary

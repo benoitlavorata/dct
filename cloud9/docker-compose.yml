@@ -3,8 +3,9 @@ services:
   cloud9:
     image: sapk/cloud9:latest
     restart: 'always'
-    command: '--auth login:password'
+    command: '--auth CUSTOM_LOGIN:CUSTOM_PASSWORD'
     ports:
-      - 8181:8181
+      - CUSTOM_PORT:8181
+    user: "CUSTOM_UID:0"
     volumes:
-       - '~/workspace:/workspace'
+       - 'CUSTOM_WORKSPACE_DIR:/workspace'
