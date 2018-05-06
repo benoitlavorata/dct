@@ -5,9 +5,7 @@ DRIVER_ARCH="Linux-x86_64"
 _section "Install drivers $DRIVER_VERSION for $DRIVER_ARCH"
 
 _log "Download drivers"
-mkdir ~/nvidia-drivers
-cd nvidia-drivers
-wget http://us.download.nvidia.com/XFree86/$DRIVER_ARCH/$DRIVER_VERSION/NVIDIA-$DRIVER_ARCH-$DRIVER_VERSION.run
+_download "http://us.download.nvidia.com/XFree86/$DRIVER_ARCH/$DRIVER_VERSION/NVIDIA-$DRIVER_ARCH-$DRIVER_VERSION.run"
 chmod +x NVIDIA-$DRIVER_ARCH-$DRIVER_VERSION.run
 _success "Downloaded drivers"
 
