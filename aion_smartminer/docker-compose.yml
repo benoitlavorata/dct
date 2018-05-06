@@ -2,6 +2,7 @@ version: "3"
 services:
   aion_smartminer:
     image: blavorata/aion_smartminer:latest
+    restart: 'always'
     environment:
      -  MINING_POOL_ADDRESS=CUSTOM_MINING_POOL_ADDRESS
      -  MINING_POOL_PORT=CUSTOM_MINING_POOL_PORT
