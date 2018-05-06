@@ -13,11 +13,9 @@ _success "Installed Deps"
 
 
 _section "Add docker rep and key"
-curl -fsSL "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/gpg" | sudo apt-key add -
-sudo add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable"
+#curl -fsSL "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/gpg" | sudo apt-key add -
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update
 _success "Add docker rep and key"
     
