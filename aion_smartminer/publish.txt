@@ -1,0 +1,3 @@
+docker login
+docker tag aion_smartminer blavorata/aion_smartminer:latest
+docker push blavorata/aion_smartminer:latest

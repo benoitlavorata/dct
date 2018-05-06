@@ -1,10 +1,12 @@
 version: "3"
 services:
-  gpu-miner:
-    image: blavorata/aion-smartminer:latest
+  aion_smartminer:
+    image: blavorata/aion_smartminer:latest
     environment:
-     -  MINING_POOL_ADDRESS=solo-mining-pool
-     -  MINING_POOL_PORT=3333
-     -  MINING_ADDRESS=xvin3t_smartminer
-    links:
-     -  solo-mining-pool
+     -  MINING_POOL_ADDRESS=CUSTOM_MINING_POOL_ADDRESS
+     -  MINING_POOL_PORT=CUSTOM_MINING_POOL_PORT
+     -  MINING_ADDRESS=CUSTOM_MINING_ADDRESS
+     -  CUDA_SOLVER=CUSTOM_CUDA_SOLVER
+     -  DEVICE=CUSTOM_DEVICE
+    networks:
+     -  CUSTOM_NETWORK
