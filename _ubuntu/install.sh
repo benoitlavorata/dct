@@ -35,7 +35,7 @@ cp ~/.bash_profile ~/.bash_profile.compose.backup
 echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile 
 cd ~/bin
 rm compose.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh
+_download https://raw.githubusercontent.com/sbglive/compose/master/compose.sh
 chmod +x compose.sh
 mv compose.sh app
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
@@ -47,14 +47,16 @@ app _docker portainer cloud9 monitor
 _log "Start portainer, cloud9, monitor"
 cd portainer
 ./up.sh
-_log1 "Portainer should be running here: http://127.0.0.1:9000/"
-
+cd ..
 cd cloud9
 ./up.sh
-_log1 "Cloud9 should be running here: http://127.0.0.1:8181/"
-
+cd ..
 cd monitor
 ./up.sh
+cd ..
+
+_log1 "Portainer should be running here: http://127.0.0.1:9000/"
+_log1 "Cloud9 should be running here: http://127.0.0.1:8181/"
 _log1 "Monitor should be running here: http://127.0.0.1:3000/"
 _break_line
 
