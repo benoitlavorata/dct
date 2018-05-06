@@ -21,14 +21,20 @@ _success "Add docker rep and key"
     
 _section "Install docker-ce"
 sudo apt-get install -y docker-ce
+docker-v
 _success "Install docker-ce"
 
-#_section "Use docker with chinese mirrors"
-#_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/daemon.json"
-#sudo mkdir /etc/docker/
-#sudo mv daemon.json /etc/docker/daemon.json
-#_success "Docker chinese mirrors"
+_section "Install docker-compose"
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+_success "Install docker-compose"
 
+_section "Use docker with chinese mirrors"
+_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/daemon.json"
+sudo mkdir /etc/docker/
+sudo mv daemon.json /etc/docker/daemon.json
+_success "Docker chinese mirrors"
 
 _section "Use docker without sudo"
 sudo groupadd docker

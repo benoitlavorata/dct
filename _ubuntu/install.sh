@@ -41,8 +41,16 @@ mv compose.sh app
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
 
-_log "Install docker"
-app _docker
+_log "Install docker, portainer, cloud9, monitor"
+app _docker portainer cloud9 monitor
+
+_log "Start portainer, cloud9, monitor"
+cd portainer
+./up.sh
+cd cloud9
+./up.sh
+cd monitor
+./up.sh
 
 _log "Start SSH and gen custom keys"
 sudo service ssh restart
