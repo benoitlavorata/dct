@@ -1,19 +1,18 @@
 #!/bin/bash
 #"default-runtime": "nvidia"
 
+_section "Download docker-compose file"
+_download $APP_COMPOSE_URL
+_success "OK, script downloaded at $APP_NAME/docker-compose.yml"
+
 #VARIABLES
-CUSTOM_GIT_FOLDER="dockprom"
-CUSTOM_GIT_URL="https://github.com/sbglive/$CUSTOM_GIT_FOLDER.git"
-
-_section "Clone $CUSTOM_GIT_URL"
-git clone https://github.com/sbglive/dockprom.git
-eval "mv $CUSTOM_GIT_FOLDER/* ."
-_success "Cloned repository"
-
-
 _section "Read Default config"
-_add_custom_config "ADMIN_USER" "admin"
-_add_custom_config "ADMIN_PASSWORD" "1234"
+_add_custom_config "MINING_POOL_ADDRESS" "127.0.0.1"
+_add_custom_config "MINING_POOL_PORT" "3333"
+_add_custom_config "MINING_ADDRESS" "xvin3_gpus"
+_add_custom_config "CUDA_SOLVER" "1"
+_add_custom_config "DEVICE" "0"
+_add_custom_config "NETWORK" "aion_mining"
 _success "Got the defaults values"
 
 _section "Configure your application"
@@ -28,6 +27,16 @@ _prompt 'Are you sure (y/n) ? ' CUSTOM_CONFIG_CONFIRM
 
 if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _section "Building configuration"
+
+    _log "Create network docker"
+     # GET IMAGE NAME
+    for index in ${!CUSTOM_CONFIG_NAMES[*]} 
+    do
+        if [ "${CUSTOM_CONFIG_NAMES[$index]}" == "NETWORK" ]; then
+            CUSTOM_NETWORK="${CUSTOM_CONFIG_VALUES[$index]}"
+        fi
+    done
+    docker network create $CUSTOM_NETWORK
 
     _log "Replace config into docker-compose.yml"
     for index in ${!CUSTOM_CONFIG_NAMES[*]} 
