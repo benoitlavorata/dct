@@ -7,7 +7,7 @@ lsmod | grep video
 #/etc/modprobe.d/nvidia-installer-disable-nouveau.conf
 
 _log "Continue install !"
-app _nvidia_docker _nvidia_oc _nvidia_monitor
+app _nvidia_monitor _nvidia_docker _nvidia_oc
 
 _section "Remove $APP_NAME files"
 cd .. 
