@@ -7,10 +7,9 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
 _section "Read Default config (default login/pass is: admin // password"
-CUSTOM_ADMIN_PASSWORD_CLEAR='password'
-CUSTOM_ADMIN_PASSWORD_CRYPT='$$2y$$05$$tv5/3s.O.w0UW08zU6CpO.U.Z9xlchoOetGO91N4z9ZoZjwY/4VOi'
-#_add_custom_config "" "$CUSTOM_ADMIN_PASSWORD_CLEAR"
-_add_custom_config "PORT" "9000"
+_add_custom_config "PASSWORD" "test1234"
+_add_custom_config "PORT_TCP" "6443"
+_add_custom_config "PORT_UDP" "6500"
 _success "Got the defaults values"
 
 _section "Configure your application"
@@ -31,9 +30,6 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     do
        sed -i -e "s/CUSTOM_${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
     done
-
-    sed -i -e "s/CUSTOM_ADMIN_PASSWORD_CRYPT/$CUSTOM_ADMIN_PASSWORD_CRYPT/g" "docker-compose.yml"
-    
 
     _success "OK, configuration is done"
     _create_compose_scripts

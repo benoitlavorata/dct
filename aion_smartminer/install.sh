@@ -46,6 +46,18 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _success "OK, configuration is done"
     _create_compose_scripts
     _shortcuts_summary
+
+    _prompt 'Do you want me to start it now ?' CUSTOM_START_CONFIRM
+    if [ "$CUSTOM_START_CONFIRM" == "y" ]; then
+        _log "OK, starting it now. ** It will automatically restart it if you reboot your computer **"
+        cd $APP_NAME
+        ./up.sh
+        _log1 "$APP_NAME Started"
+
+        _log "You can check the logs with ./logs.sh"
+    else
+        _log "I will not start it for you, then."
+    fi
 else
    _error "OK, I cancel the installation. Remember to remove the files if not needed"
    _exit
