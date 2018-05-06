@@ -26,6 +26,12 @@ _log "Install npm packages (global)"
 sudo npm install -g $NPM_LIST
 _break_line
 
+_log "Set git"
+_prompt "Input your email (for git actions) ?" CUSTOM_USER_GIT_MAIL
+_prompt "Input your email (for git actions) ?" CUSTOM_USER_GIT_NAME
+git config --global user.email "$CUSTOM_USER_GIT_MAIL"
+git config --global user.name "$CUSTOM_USER_GIT_NAME"
+
 _log "Start SSH and gen custom keys"
 sudo service ssh restart
 ssh-keygen -t rsa -b 4096 

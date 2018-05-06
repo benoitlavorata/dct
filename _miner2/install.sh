@@ -27,6 +27,9 @@ sudo service docker restart
 cat "/etc/docker/daemon.json"
 _success "nvidia as default runtime"
 
+_log "Install the miner !"
+app aion_smartminer
+
 _section "Remove $APP_NAME files"
 cd .. 
 rm -r $APP_NAME

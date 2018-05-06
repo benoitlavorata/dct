@@ -8,5 +8,7 @@ services:
      -  MINING_ADDRESS=CUSTOM_MINING_ADDRESS
      -  CUDA_SOLVER=CUSTOM_CUDA_SOLVER
      -  DEVICE=CUSTOM_DEVICE
-    networks:
-     -  CUSTOM_NETWORK
+networks:
+  default:
+    external:
+      name: CUSTOM_NETWORK
