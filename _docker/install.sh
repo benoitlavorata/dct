@@ -23,11 +23,11 @@ _section "Install docker-ce"
 sudo apt-get install -y docker-ce
 _success "Install docker-ce"
 
-_section "Use docker with chinese mirrors"
-_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/daemon.json"
-sudo mkdir /etc/docker/
-sudo mv daemon.json /etc/docker/daemon.json
-_success "Docker chinese mirrors"
+#_section "Use docker with chinese mirrors"
+#_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/daemon.json"
+#sudo mkdir /etc/docker/
+#sudo mv daemon.json /etc/docker/daemon.json
+#_success "Docker chinese mirrors"
 
 
 _section "Use docker without sudo"
