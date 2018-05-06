@@ -301,8 +301,8 @@ function _install {
     fi
 
     # VARIABLES
-    APP_COMPOSE_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/docker-compose.yml"
     APP_CUSTOM_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/install.sh"
+    APP_COMPOSE_URL="https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/docker-compose.yml"
     APP_CAN_INSTALL=0
 
 

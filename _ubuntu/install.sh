@@ -8,6 +8,9 @@ _log "Ubuntu packages: ${PACKAGE_LIST}"
 _log "NPM packages: ${NPM_LIST}"
 _break_line
 
+_section "Set APT mirrors"
+sudo sed -i -e 's/http:\/\/us.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
+
 _log "Update"
 sudo apt-get update
 _break_line
@@ -40,10 +43,6 @@ cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
 _log "Install docker"
 app _docker
-# /etc/docker/daemon.json
-# {
-#  "registry-mirrors": ["https://registry.docker-cn.com"]
-# }
 
 _log "Start SSH and gen custom keys"
 sudo service ssh restart

@@ -16,9 +16,6 @@ cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 _log "Install ubuntu pref"
 app _ubuntu
 
-_log "Install docker"
-app _docker
-
 _section "Remove $APP_NAME files"
 cd .. 
 rm -r $APP_NAME
