@@ -53,7 +53,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
 
     if [ "$CUSTOM_START_CONFIRM" == "y" ]; then
         _log "OK, starting it now. ** It will automatically restart it if you reboot your computer **"
-        cd $APP_NAME
+        
         ./up.sh
         _log1 "$APP_NAME Started"
 
