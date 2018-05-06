@@ -217,7 +217,7 @@ function _create_compose_scripts {
 
 function _download {
     _log "Download file: $1"
-    curl --silent --remote-name $1
+    curl --remote-name $1
     _log1 "Downloaded file"
 }
 
