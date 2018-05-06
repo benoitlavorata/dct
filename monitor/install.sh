@@ -46,7 +46,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
         ./up.sh
         _log1 "$APP_NAME Started"
 
-        _log "You can check the logs with ./logs.sh"
+        _cd ..
     else
         _log "I will not start it for you, then."
     fi
