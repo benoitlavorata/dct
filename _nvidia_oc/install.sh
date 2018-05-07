@@ -1,7 +1,7 @@
 #!/bin/bash
 _log "Set nvidia-xconfig"
 _log1 "You may need to modify your /etc/X11/xorg.conf after"
-sudo nvidia-xconfig ---enable-all-gpus --separate-x-screens --cool-bits=28 --allow-empty-initial-configuration
+sudo nvidia-xconfig --enable-all-gpus --separate-x-screens --cool-bits=28 --allow-empty-initial-configuration
 
 # sudo vim /etc/X11/xorg.conf
 _log "Set make xorg.conf non editable"
