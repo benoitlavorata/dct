@@ -1,10 +1,8 @@
 #!/bin/bash
-PACKAGE_LIST="vim docker docker-compose gcc build-essential nodejs npm wget curl jq tmux"
-NPM_LIST="forever n"
+PACKAGE_LIST="vim wget curl jq tmux"
 
 _section "Install usual packages (personal use)"
 _log "Ubuntu packages: ${PACKAGE_LIST}"
-_log "NPM packages: ${NPM_LIST}"
 _break_line
 
 _section "Set APT mirrors"
@@ -22,25 +20,17 @@ _log "Install ubuntu packages"
 sudo apt-get install -y $PACKAGE_LIST
 _break_line
 
-_log "Install npm packages (global)"
-sudo npm install -g $NPM_LIST
+_log "Install node and npm"
+app _nodejs
 _break_line
 
-_log "Set git"
-_prompt "Input your email (for git actions) ?" CUSTOM_USER_GIT_MAIL
-_prompt "Input your email (for git actions) ?" CUSTOM_USER_GIT_NAME
-git config --global user.email "$CUSTOM_USER_GIT_MAIL"
-git config --global user.name "$CUSTOM_USER_GIT_NAME"
-
-_log "Start SSH and gen custom keys"
-sudo service ssh restart
-ssh-keygen -t rsa -b 4096 
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+_log "Install git"
+app _git
 _break_line
 
 _log "Install docker, portainer, cloud9, monitor"
 app _docker portainer cloud9 monitor
+
 
 _log "Start portainer, cloud9, monitor"
 cd portainer
