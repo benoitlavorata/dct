@@ -7,8 +7,8 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
 _section "Read Default config"
-_add_custom_config "CUSTOM_PORT_UNENCRYPTED" "1883"
-_add_custom_config "CUSTOM_PORT_ENCRYPTED" "9001"
+_add_custom_config "PORT_UNENCRYPTED" "1883"
+_add_custom_config "PORT_ENCRYPTED" "9001"
 _success "Got the defaults values"
 
 _section "Configure your application"
