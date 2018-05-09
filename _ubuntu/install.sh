@@ -1,5 +1,5 @@
 #!/bin/bash
-PACKAGE_LIST="vim wget curl jq tmux"
+PACKAGE_LIST="vim wget curl jq tmux autossh openssh-server"
 
 _section "Install usual packages (personal use)"
 _log "Ubuntu packages: ${PACKAGE_LIST}"
