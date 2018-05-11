@@ -33,6 +33,7 @@ sudo tee /etc/docker/daemon.json <<EOF
             "runtimeArgs": []
         }
     },
+    "default-runtime": "nvidia",
     "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 EOF
@@ -54,8 +55,6 @@ _section "Run Nvidia/cuda container"
 # Test nvidia-smi with the latest official CUDA image
 docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
 _success "started nvidia/cuda"
-
-
 
 
 _section "Remove install files"
