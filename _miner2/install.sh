@@ -13,7 +13,7 @@ lsmod | grep nouveau
 #/etc/modprobe.d/nvidia-installer-disable-nouveau.conf
 
 _log "Continue install !"
-app _nvidia_monitor _nvidia_docker _nvidia_oc
+app _nvidia_docker
 
 _section "Add default runtime as nvidia for docker"
 sudo su
@@ -28,7 +28,9 @@ cat "/etc/docker/daemon.json"
 _success "nvidia as default runtime"
 
 _log "Install the miner !"
+cd ~/
 app aion_smartminer
+cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
 _section "Remove $APP_NAME files"
 cd .. 

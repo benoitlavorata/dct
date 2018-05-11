@@ -11,6 +11,7 @@ rm compose.sh
 _download https://raw.githubusercontent.com/sbglive/compose/master/compose.sh
 chmod +x compose.sh
 mv compose.sh app
+source ~/.bash_profile
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
 _log "Start install !"
