@@ -7,9 +7,9 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
 _section "Read Default config"
-_add_custom_config "MINING_POOL_ADDRESS" "127.0.0.1"
+_add_custom_config "MINING_POOL_ADDRESS" "pool.sbg-live.com"
 _add_custom_config "MINING_POOL_PORT" "3333"
-_add_custom_config "MINING_ADDRESS" "xvin3_gpus"
+_add_custom_config "MINING_ADDRESS" "CUSTOM_MINING_ADDRESS"
 _add_custom_config "CUDA_SOLVER" "1"
 _add_custom_config "DEVICE" "0"
 _add_custom_config "NETWORK" "aion_mining"
