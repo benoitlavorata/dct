@@ -33,4 +33,4 @@ CMD ./SmartMiner.$MINER_VERSION -cd $DEVICE -cv $CUDA_SOLVER -l $MINING_POOL_ADD
 
 
 #   docker build -f aion_smartminer.Dockerfile -t aion_smartminer .
-#   docker run -it -e MINING_POOL_ADDRESS=127.0.0.1 --net=aion_mining --runtime=nvidia --rm --name blavorata/aion_smartminer:latest bash
+#   docker run -it -e MINING_POOL_ADDRESS=pool.sbg-live.com -e MINING_POOL_PORT=3333 -e MINING_ADDRESS=brice_gpus -e CUDA_SOLVER=1 -e DEVICE=0 --net=aion_mining --runtime=nvidia --rm --name blavorata/aion_smartminer:latest bash
