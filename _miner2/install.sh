@@ -30,6 +30,11 @@ _success "nvidia as default runtime"
 _log "Install the miner !"
 cd ~/
 app aion_smartminer
+
+cd ~/
+app _miner_monitor
+
+
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
 _section "Remove $APP_NAME files"
