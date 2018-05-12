@@ -9,10 +9,15 @@ cd ~/
 git clone $CUSTOM_GIT_URL
 cd miner
 npm install
-touch config/_credentials.js
 _success "Cloned repository"
 
-_log1 "Make sure to edit the file config/_credentials.js"
+_section "Adding credentials"
+_prompt "Enter your private key for miner ? " CUSTOM_PRIVATE_KEY
+
+touch config/_credentials.js
+echo 'module.exports = { privateKey: "$CUSTOM_PRIVATE_KEY"}' > config/_credentials.js
+_section "Success adding credentials"
+
 _log1 "Start with ./ctl.sh start"
 _log1 "Stop with ./ctl.sh stop"
 
