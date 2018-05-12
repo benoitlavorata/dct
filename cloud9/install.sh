@@ -9,7 +9,7 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 _section "Read Default config"
 _add_custom_config "LOGIN" "admin"
 _add_custom_config "PASSWORD" "password"
-_add_custom_config "WORKSPACE_DIR" "~/"
+#_add_custom_config "WORKSPACE_DIR" "~/"
 _add_custom_config "PORT" "8181"
 _success "Got the defaults values"
 

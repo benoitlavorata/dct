@@ -8,4 +8,4 @@ services:
       - CUSTOM_PORT:8181
     user: "CUSTOM_UID:0"
     volumes:
-       - 'CUSTOM_WORKSPACE_DIR:/workspace'
+       - '~/:/workspace'
