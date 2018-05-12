@@ -10,9 +10,11 @@ git clone $CUSTOM_GIT_URL
 cd miner
 npm install
 touch config/_credentials.js
-_log1 "Make sure to edit the file config/_credentials.js"
 _success "Cloned repository"
 
+_log1 "Make sure to edit the file config/_credentials.js"
+_log1 "Start with ./ctl.sh start"
+_log1 "Stop with ./ctl.sh stop"
 
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
