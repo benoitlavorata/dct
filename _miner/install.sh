@@ -15,6 +15,7 @@ source ~/.bash_profile
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
 _log "Start install !"
+cd ~/
 app _ubuntu _nvidia_driver
 
 _section "Remove $APP_NAME files"

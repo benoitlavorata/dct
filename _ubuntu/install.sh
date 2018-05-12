@@ -21,17 +21,26 @@ sudo apt-get install -y $PACKAGE_LIST
 _break_line
 
 _log "Install node and npm"
+cd ~/
 app _nodejs
 _break_line
 
 _log "Install git"
+cd ~/
 app _git
 _break_line
 
 _log "Install docker, portainer, cloud9, monitor"
-cd ..
-app _docker portainer cloud9 monitor
+cd ~/
+app _docker
+cd ~/
+app portainer 
+cd ~/ 
+app cloud9 
+cd ~/
+app monitor
 
+cd ~/
 
 _log "Start portainer, cloud9, monitor"
 cd portainer
