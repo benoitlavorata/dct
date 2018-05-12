@@ -18,8 +18,14 @@ touch config/_credentials.js
 echo 'module.exports = { privateKey: "$CUSTOM_PRIVATE_KEY"}' > config/_credentials.js
 _section "Success adding credentials"
 
+
+_log "Starting it now"
+./ctl.sh start
+
+
 _log1 "Start with ./ctl.sh start"
 _log1 "Stop with ./ctl.sh stop"
+_log1 "Check the logs here: tail -f miner.log"
 
 cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
 
