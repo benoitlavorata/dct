@@ -29,6 +29,7 @@ app _git
 _break_line
 
 _log "Install docker, portainer, cloud9, monitor"
+cd ..
 app _docker portainer cloud9 monitor
 
 
