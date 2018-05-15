@@ -9,14 +9,9 @@ For windows users, do not loose your time here.
 If you want to be able to run this script easily, anywhere on your system, move it to your $PATH like below:
 
 ```bash
-cd ~/ && mkdir bin
-cp ~/.bash_profile ~/.bash_profile.compose.backup
-echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile 
-source ~/.bash_profile
-cd ~/bin
-rm compose.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
-mv compose.sh app
+rm install.sh
+wget https://raw.githubusercontent.com/sbglive/compose/master/install.sh && chmod +x install.sh
+./install.sh
 ```
 
 Now you can install any applications from this command:
