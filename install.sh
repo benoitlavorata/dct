@@ -132,5 +132,3 @@ mv compose.sh app
 _success "Installed the app !"
 
 _info "You can now use the command: app <APP_NAME>"
-
-_exit 
