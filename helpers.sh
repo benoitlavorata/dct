@@ -60,8 +60,8 @@ function _sub_intro {
     echo -e "${__LINE}${NC}"
 }
 
-function _exit {
-    echo -e "${__COLOR_INTRO}"
+function _outro {
+   echo -e "${__COLOR_INTRO}"
     echo -e ${__LINE}
     echo -e "Thank you for using the compose script !"
     echo -e "Cheers, Benoit Lavorata."
@@ -71,6 +71,10 @@ function _exit {
     echo -e  "AION: a0f0886adb7ea587db2283f902efc504304277802cb1d75dffddfc0979667e40"
     echo -e ${__LINE}
     echo -e "${__NC}"
+}
+
+function _exit {
+    _outro
     exit 1
 }
 
