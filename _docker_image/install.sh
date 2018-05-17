@@ -11,10 +11,9 @@ CUSTOM_
 CUSTOM_IMAGE_NAME
 CUSTOM_IMAGE_INSTALL_SCRIPTS
 
-
 _add_custom_config "IMAGE_SOURCE" "ubuntu:16.04"
 _add_custom_config "IMAGE_NAME" "DOCKER_BOILERPLATE"
-_add_custom_config "IMAGE_MAINTAINER" "BenoitLavorata"
+_add_custom_config "IMAGE_MAINTAINER" 'Benoit Lavorata'
 _add_custom_config "IMAGE_INSTALL_SCRIPTS" "test"
 _add_custom_config "IMAGE_EXPOSED_PORTS" "22"
 _success "Got the defaults values"
