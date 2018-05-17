@@ -12,6 +12,7 @@ If you want to be able to run this script easily, anywhere on your system, move 
 rm install.sh
 wget https://raw.githubusercontent.com/sbglive/compose/master/install.sh && chmod +x install.sh
 ./install.sh
+rm install.sh
 ```
 
 Now you can install any applications from this command:

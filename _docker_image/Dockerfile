@@ -1,23 +1,26 @@
 ############################################################
 # Dockerfile to build ODOO base images (FAL)
-# Based on Ubuntu 16.04
+# Based on CUSTOM_IMAGE_SOURCE
 ############################################################
-FROM ubuntu:16.04
-MAINTAINER Benoit Lavorata <benoit@sbg-live.com>
+FROM CUSTOM_IMAGE_SOURCE
+MAINTAINER CUSTOM_IMAGE_MAINTAINER
 
 #ENVIRONMENT VARIABLES
 ARG IMAGE_NAME="CUSTOM_IMAGE_NAME"
 ARG IMAGE_INSTALL_SCRIPTS="CUSTOM_IMAGE_INSTALL_SCRIPTS"
-ARG IMAGE_INSTALL_DIR="/container_scripts"
-ARG ENTRYPOINT_DIR="/entrypoint"
 
 #PREPARE INSTALL SCRIPT
 ENV DEBIAN_FRONTEND noninteractive
-COPY ./${IMAGE_INSTALL_DIR} ${IMAGE_INSTALL_DIR}
-RUN chmod +x ${IMAGE_INSTALL_DIR}/*.sh
-RUN .${IMAGE_INSTALL_DIR}/install.sh
+RUN wget https://raw.githubusercontent.com/sbglive/compose/master/install.sh
+RUN chmod +x install.sh
+RUN ./install.sh
+RUN rm install.sh
+RUN app $IMAGE_INSTALL_SCRIPTS
+#COPY ./${IMAGE_INSTALL_DIR} ${IMAGE_INSTALL_DIR}
+#RUN chmod +x ${IMAGE_INSTALL_DIR}/*.sh
+#RUN .${IMAGE_INSTALL_DIR}/install.sh
 #RUN rm -r ${IMAGE_INSTALL_DIR}
 ENV DEBIAN_FRONTEND teletype
 
-EXPOSE CUSTOM_EXPOSED_PORTS
-ENTRYPOINT ["/entrypoint/boot.sh"]
+EXPOSE CUSTOM_IMAGE_EXPOSED_PORTS
+ENTRYPOINT ["/boot.sh"]
