@@ -114,6 +114,7 @@ cd ~/ && mkdir bin
 
 _log "Backup ~/.bash_profile to ~/.bash_profile.compose.backup"
 cp ~/.bash_profile ~/.bash_profile.compose.backup
+touch ~/.bash_profile
 
 _log "Add ~/bin to PATH"
 echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile 
