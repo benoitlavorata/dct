@@ -3,8 +3,10 @@ _section "Install miner in ~/"
 cd ~/
 
 _section "Set APT mirrors"
-sudo sed -i -e 's/http:\/\/us.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
- 
+#sudo sed -i -e 's/http:\/\/us.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
+app _apt_mirrors
+_break_line
+
 _log "Update"
 sudo apt-get update
 _break_line
