@@ -5,7 +5,6 @@ sudo apt-get remove -y docker docker-engine docker.io docker-compose
 _success "removed old versions"
 
 _section "Install Deps"
-#sudo apt-get install docker docker-compose -y
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 _success "Installed Deps"

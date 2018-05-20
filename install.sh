@@ -133,5 +133,3 @@ _success "Installed the app !"
 
 _info "You can now use the command: app <APP_NAME>"
 _outro
-
-return 1

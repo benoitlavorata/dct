@@ -1,22 +1,35 @@
 #!/bin/bash
-
-_log "Install compose.sh as bin in path"
-cd ~/ 
-mkdir bin
-cp ~/.bash_profile ~/.bash_profile.compose.backup
-echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile 
-source ~/.bash_profile 
-cd ~/bin
-rm compose.sh
-_download https://raw.githubusercontent.com/sbglive/compose/master/compose.sh
-chmod +x compose.sh
-mv compose.sh app
-source ~/.bash_profile
-cd "$SCRIPT_WORKING_DIR_PATH/$APP_NAME"
-
-_log "Start install !"
+_section "Install miner in ~/"
 cd ~/
-app _ubuntu _nvidia_driver
+
+_section "Set APT mirrors"
+sudo sed -i -e 's/http:\/\/us.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
+
+_log "Update"
+sudo apt-get update
+_break_line
+
+_log "Upgrade"
+sudo apt-get upgrade -y
+_break_line
+
+_log "Install ubuntu packages"
+PACKAGE_LIST="vim wget curl git"
+_log "Ubuntu packages: ${PACKAGE_LIST}"
+sudo apt-get install -y $PACKAGE_LIST
+_break_line
+
+_log "Install node and npm"
+app _nodejs
+_break_line
+
+_log "Install docker"
+app _docker
+_break_line
+
+_log "Install nvidia drivers"
+app _nvidia_driver
+_break_line
 
 _section "Remove $APP_NAME files"
 cd .. 

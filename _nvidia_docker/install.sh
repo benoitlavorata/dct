@@ -24,7 +24,7 @@ _success "Installed nvidia-docker2"
 
 
 _section "Edit docker conf"
-cp "/etc/docker/daemon.json" "/etc/docker/daemon.json.backup"
+sudo cp "/etc/docker/daemon.json" "/etc/docker/daemon.json.backup"
 sudo tee /etc/docker/daemon.json <<EOF
 {
     "runtimes": {

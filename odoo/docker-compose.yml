@@ -1,32 +1,32 @@
-version: '3'
+version: '3.3'
 services:
+
   postgres:
-    image: 'postgres:9.5'
-    restart: 'always'
-    ports:
-      - 'CUSTOM_DB_PORT:5432'
+    image: postgres:9.5
     volumes:
-      - './postgres_data:/var/lib/postgresql/data'
+      - ./volumes/postgres:/var/lib/postgresql/data
+      - /etc/passwd:/etc/passwd:ro
     environment:
-      - POSTGRES_USER=CUSTOM_ODOO_DB_USER
-      - POSTGRES_PASSWORD=CUSTOM_ODOO_DB_PASSWORD
-      
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=strong_pg_superuser_password
+    user: 1001:1001
+
   odoo:
-    image: 'elicocorp/odoo-china:11.0'
-    restart: 'always'
+    image: elicocorp/odoo:10.0
     command: start
     ports:
-      - 'CUSTOM_ODOO_PORT:8069'
-    volumes:
-      - './odoo_data/filestore:/opt/odoo/data/filestore'
-      - './odoo_data/sessions:/opt/odoo/data/sessions'
-      - './odoo_data/additional_addons:/opt/odoo/additional_addons'
-      - './odoo_data/specific_addons:/opt/odoo/specific_addons'
-      - './odoo_data/etc:/opt/odoo/etc'
+      - 127.0.0.1:8069:8069
     links:
-      - 'postgres:db'
+      - postgres:db
+    volumes:
+      - ./volumes/odoo/addons:/opt/odoo/additional_addons
+      - ./volumes/odoo/filestore:/opt/odoo/data/filestore
+      - ./volumes/odoo/sessions:/opt/odoo/data/sessions
+      - ./volumes/odoo/ssh:/opt/odoo/ssh:ro
     environment:
-      - ODOO_ADMIN_PASSWD=CUSTOM_ODOO_ADMIN_PASSWD
-      - ODOO_DB_USER=CUSTOM_ODOO_DB_USER
-      - ODOO_DB_PASSWORD=CUSTOM_ODOO_DB_PASSWORD
-      - FETCH_OCA_DEPENDENCIES=False
+      - ADDONS_REPO=git@github.com:Elico-Corp/odoo-private-addons.git
+      - TARGET_UID=1001
+      - ODOO_ADMIN_PASSWD=strong_odoo_master_password
+      - ODOO_DB_USER=odoo
+      - ODOO_DB_PASSWORD=strong_pg_odoo_password
+      
