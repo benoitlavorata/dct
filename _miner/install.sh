@@ -4,7 +4,7 @@ cd ~/
 
 _section "Set APT mirrors"
 sudo sed -i -e 's/http:\/\/us.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
-
+ 
 _log "Update"
 sudo apt-get update
 _break_line
