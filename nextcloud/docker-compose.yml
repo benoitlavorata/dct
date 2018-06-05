@@ -1,21 +1,35 @@
-version: '2'
+version: '3.3'
 services:
+
   db:
     image: mariadb
     restart: always
     volumes:
-      - './mariadb_data:/var/lib/mysql'
+      - ./volumes/nextcloud_mariadb:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=next123
-      - MYSQL_PASSWORD=next456
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_PASSWORD=
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+
   app:  
     image: nextcloud
     ports:
-      - 8080:8080
+      - 8080:80
     links:
       - db
     volumes:
-      - './nextcloud_data:/var/www/html'
+      - ./volumes/nextcloud_html:/var/www/html
     restart: always
+    environment:
+        - VIRTUAL_PORT=80
+        - VIRTUAL_HOST=CUSTOM_VIRTUAL_HOST
+        - LETSENCRYPT_HOST=CUSTOM_LETSENCRYPT_HOST
+        - LETSENCRYPT_EMAIL=CUSTOM_LETSENCRYPT_EMAIL
+    networks:
+      - webproxy
+      
+networks:
+  webproxy:
+    external:
+      name: webproxy
