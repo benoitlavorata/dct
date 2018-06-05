@@ -37,6 +37,7 @@ sudo tee /etc/docker/daemon.json <<EOF
     "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 EOF
+knfdspoie#@!3fdf%$#fjfffd423lkjds
 sudo pkill -SIGHUP dockerd
 
 #sudo su
