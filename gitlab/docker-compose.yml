@@ -16,7 +16,8 @@ web:
       - LETSENCRYPT_HOST=CUSTOM_LETSENCRYPT_HOST
       - LETSENCRYPT_EMAIL=CUSTOM_LETSENCRYPT_EMAIL
     GITLAB_OMNIBUS_CONFIG: |
-      external_url 'https://gitlab.example.com'
+      external_url 'http://CUSTOM_HOST_NAME:CUSTOM_PORT_HTTP'
+      gitlab_rails['gitlab_shell_ssh_port'] = CUSTOM_PORT_SSH
       # Add any other gitlab.rb configuration here, each on its own line
   networks:
     - webproxy
