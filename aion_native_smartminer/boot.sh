@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /opt
+./SmartMiner.$MINER_VERSION -cd $DEVICE -cv $CUDA_SOLVER -l $MINING_POOL_ADDRESS:$MINING_POOL_PORT -u $MINING_ADDRESS

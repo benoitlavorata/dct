@@ -1,4 +1,5 @@
-FROM nvidia/cuda:9.1-base-ubuntu16.04
+FROM blavorata/cuda:9.1-base-ubuntu16.04-china-loaded
+#nvidia/cuda:9.1-base-ubuntu16.04
 
 # 
 # Initial code from https://hub.docker.com/r/sh39sxn/aion-miner-gpu/
