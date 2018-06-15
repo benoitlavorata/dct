@@ -43,7 +43,7 @@ function _quit_if_not_root {
     _info "Log in as root"
     if [[ $EUID -ne 0 ]]; then
         _error $1
-        exit 1
+        exit 0
     fi
     _success "Log in as root"
 }
