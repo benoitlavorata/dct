@@ -1,8 +1,11 @@
 #!/bin/bash
 
 _section "Install Aion Miner in Docker"
-#_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/Dockerfile"
-#_success "Got docker file"
+mkdir boot_container
+cd boot_container
+_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/boot.sh"
+cd ..
+_success "Got boot file"
 
 rm /etc/apt/sources.list.d/cuda.list /etc/apt/sources.list.d/nvidia-ml.list && apt-get install -y bzip2
 cd /opt
