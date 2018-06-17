@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: xvin3t
+      MONGO_INITDB_ROOT_PASSWORD: g0pq2m1!
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: xvin3t
+      ME_CONFIG_MONGODB_ADMINPASSWORD: g0pq2m1!
