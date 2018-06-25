@@ -1,8 +1,10 @@
-version: '2'
+version: '3'
+
 services:
+
   mqtt:
     image: 'eclipse-mosquitto:latest'
     restart: 'always'
     ports:
       - 'CUSTOM_PORT_UNENCRYPTED:1883'
-      - 'CUSTOM_PORT_ENCRYPTED:9001'
+    #  - 'CUSTOM_PORT_ENCRYPTED:9001'
