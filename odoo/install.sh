@@ -5,13 +5,16 @@ _section "Download docker-compose file"
 _download $APP_COMPOSE_URL
 _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
+_section "Download default odoo.conf"
+_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/odoo.conf"
+_success "OK, script downloaded at $APP_NAME/odoo.conf"
+
 _section "Read Default config"
 _add_custom_config "ODOO_DB_USER" "odoo"
 _add_custom_config "ODOO_DB_PASSWORD" "dbpass"
 _add_custom_config "ODOO_ADMIN_PASSWD" "odoopass"
 _add_custom_config "ODOO_PORT" "8069"
 #_add_custom_config "DB_PORT" "5432"
-
 _success "Got the defaults values"
 
 _section "Configure your application"
