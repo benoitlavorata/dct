@@ -2,8 +2,8 @@ version: '3'
 
 services:
 
-  mongo:
-    image: mongodb
+  mongodb:
+    image: bitnami/mongodb:latest
     restart: always
     ports:
       - CUSTOM_MONGODB_PORT:27017

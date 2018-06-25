@@ -13,7 +13,7 @@ services:
     image: 'bitnami/owncloud:latest'
     ports:
       - 'CUSTOM_PORT:80'
-      - 'CUSTOM_PORT_HTTPS:443'
+     # - 'CUSTOM_PORT_HTTPS:443'
     volumes:
       - 'owncloud-data-volume:/bitnami'
     depends_on:
