@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  sqlpad:
+    image: 'sqlpad/sqlpad:latest'
+    restart: 'always'
+    ports:
+      - 'CUSTOM_PORT:3000'
+    environment:
+      - SQLPAD_DEBUG=TRUE
+    volumes:
+      - sqlpad-volume:/var/lib/sqlpad
+
+volumes:
+  sqlpad-volume:
+
+#https://github.com/rickbergfalk/sqlpad/tree/master/docker-validation
