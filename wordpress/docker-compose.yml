@@ -1,37 +1,46 @@
-version: '2'
+version: '3'
+
 services:
+
   mariadb:
     image: 'bitnami/mariadb:latest'
     restart: always
     environment:
-      - MARIADB_USER=bn_wordpress
-      - MARIADB_DATABASE=bitnami_wordpress
+      - MARIADB_USER=CUSTOM_DB_USER
+      - MARIADB_DATABASE=CUSTOM_DB_NAME
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - './mariadb_data:/bitnami'
+      - 'wordpress-mariadb-volume:/bitnami'
+
   phpmyadmin:
     image: bitnami/phpmyadmin:latest
     restart: always
     depends_on:
       - mariadb
     ports:
-      - '8080:80'
-      - '8443:443'
+      - 'CUSTOM_PHPMYADMIN_PORT:80'
+      - 'CUSTOM_PHPMYADMIN_PORT_HTTPS:443'
     volumes:
-      - './phpmyadmin_data:/bitnami'
+      - 'wordpress-phpmyadmin-volume:/bitnami'
+
   wordpress:
     image: 'bitnami/wordpress:latest'
     restart: always
     depends_on:
       - mariadb
     ports:
-      - '80:80'
-      - '443:443'
+      - 'CUSTOM_WP_PORT:80'
+      - 'CUSTOM_WP_PORT_HTTPS:443'
     environment:
       - MARIADB_HOST=mariadb
       - MARIADB_PORT_NUMBER=3306
-      - WORDPRESS_DATABASE_USER=bn_wordpress
-      - WORDPRESS_DATABASE_NAME=bitnami_wordpress
+      - WORDPRESS_DATABASE_USER=CUSTOM_DB_USER
+      - WORDPRESS_DATABASE_NAME=CUSTOM_DB_NAME
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - './wordpress_data:/bitnami'
+      - 'wordpress-data-volume:/bitnami'
+
+volumes:
+  wordpress-data-volume:
+  wordpress-mariadb-volume:
+  wordpress-phpmyadmin-volume:

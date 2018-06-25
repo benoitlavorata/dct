@@ -7,10 +7,8 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
 _section "Read Default config"
-#CUSTOM_ADMIN_PASSWORD_CLEAR='password'
-#CUSTOM_ADMIN_PASSWORD_CRYPT='$$2y$$05$$tv5/3s.O.w0UW08zU6CpO.U.Z9xlchoOetGO91N4z9ZoZjwY/4VOi'
-#_add_custom_config "" "$CUSTOM_ADMIN_PASSWORD_CLEAR"
-_add_custom_config "PORT" "9000"
+_add_custom_config "PORT" "80"
+_add_custom_config "PORT_HTTPS" "443"
 _success "Got the defaults values"
 
 _section "Configure your application"

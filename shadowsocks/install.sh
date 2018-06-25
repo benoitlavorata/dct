@@ -6,7 +6,7 @@ _download $APP_COMPOSE_URL
 _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
-_section "Read Default config (default login/pass is: admin // password"
+_section "Read Default config"
 _add_custom_config "PASSWORD" "test1234"
 _add_custom_config "PORT_TCP" "6443"
 _add_custom_config "PORT_UDP" "6500"

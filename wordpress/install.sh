@@ -7,10 +7,12 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
 _section "Read Default config"
-#CUSTOM_ADMIN_PASSWORD_CLEAR='password'
-#CUSTOM_ADMIN_PASSWORD_CRYPT='$$2y$$05$$tv5/3s.O.w0UW08zU6CpO.U.Z9xlchoOetGO91N4z9ZoZjwY/4VOi'
-#_add_custom_config "" "$CUSTOM_ADMIN_PASSWORD_CLEAR"
-_add_custom_config "PORT" "9000"
+_add_custom_config "WP_PORT" "80"
+_add_custom_config "WP_PORT_HTTPS" "443"
+_add_custom_config "PHPMYADMIN_PORT" "8080"
+_add_custom_config "PHPMYADMIN_PORT_HTTPS" "8443"
+_add_custom_config "DB_USER" "bn_wordpress"
+_add_custom_config "DB_NAME" "wordpress"
 _success "Got the defaults values"
 
 _section "Configure your application"
@@ -32,9 +34,6 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
        sed -i -e "s/CUSTOM_${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
     done
 
-    sed -i -e "s/CUSTOM_ADMIN_PASSWORD_CRYPT/$CUSTOM_ADMIN_PASSWORD_CRYPT/g" "docker-compose.yml"
-    
-
     _success "OK, configuration is done"
     _create_compose_scripts
     _shortcuts_summary
@@ -42,7 +41,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _break_line
     _prompt 'Do you want me to start it now (y/n) ?' CUSTOM_START_CONFIRM
     _break_line
-    
+
     if [ "$CUSTOM_START_CONFIRM" == "y" ]; then
         _log "OK, starting it now. ** It will automatically restart it if you reboot your computer **"
         

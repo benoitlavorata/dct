@@ -1,11 +1,15 @@
-version: '2'
+version: '3'
+
 services:
+
   portainer:
     image: portainer/portainer:latest
     restart: 'always'
-    command: --admin-password "CUSTOM_ADMIN_PASSWORD_CRYPT"
     ports:
       - CUSTOM_PORT:9000
     volumes:
-       - './portainer_data:/data'
-       - '/var/run/docker.sock:/var/run/docker.sock'
+       - 'portainer-volume:/data'
+       - '/var/run/docker.sock:/var/run/docker.sock:rw'
+
+volumes:
+  portainer-volume:

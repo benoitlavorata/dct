@@ -1,17 +1,24 @@
-version: '2'
+version: '3'
+
 services:
+
   mariadb:
     image: 'bitnami/mariadb:latest'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - './mariadb_data:/bitnami'
+      - './owncloud-mariadb-volume:/bitnami'
+
   owncloud:
     image: 'bitnami/owncloud:latest'
     ports:
-      - '80:80'
-      - '443:443'
+      - 'CUSTOM_PORT:80'
+      - 'CUSTOM_PORT_HTTPS:443'
     volumes:
-      - './owncloud_data:/bitnami'
+      - 'owncloud-data-volume:/bitnami'
     depends_on:
       - mariadb
+
+volumes:
+  owncloud-mariadb-volume:
+  owncloud-data-volume:

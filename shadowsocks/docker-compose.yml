@@ -1,5 +1,7 @@
-version: '2'
+version: '3'
+
 services:
+
   shadowsocks:
     image: 'mritd/shadowsocks:latest'
     restart: 'always'
