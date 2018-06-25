@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - odoo-postgresql-volume:/var/lib/postgresql/data
+      #- /etc/passwd:/etc/passwd:ro
+    environment:
+      - POSTGRES_USER=CUSTOM_ODOO_DB_USER
+      - POSTGRES_PASSWORD=CUSTOM_ODOO_DB_PASSWORD
+
+  odoo:
+    image: elicocorp/odoo:11.0
+    command: start
+    ports:
+      - CUSTOM_ODOO_PORT:8069
+    links:
+      - postgres:db
+    volumes:
+      - odoo-filestore-volume:/opt/odoo/data/filestore
+      - odoo-sessions-volume:/opt/odoo/data/sessions
+      - odoo-addons-volume:/opt/odoo/additional_addons
+      - odoo-specific-volume:/opt/odoo/specific_addons
+      - ./odoo.conf:/opt/odoo/etc/odoo.conf:rw
+    environment:
+      - ODOO_ADMIN_PASSWD=CUSTOM_ODOO_ADMIN_PASSWD
+      - ODOO_DB_USER=CUSTOM_ODOO_DB_USER
+      - ODOO_DB_PASSWORD=CUSTOM_ODOO_DB_PASSWORD
+      
+volumes:
+  odoo-postgresql-volume:
+  odoo-sessions-volume:
+  odoo-filestore-volume:
+  odoo-addons-volume:
+  odoo-specific-volume:

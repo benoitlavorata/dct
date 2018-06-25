@@ -10,7 +10,8 @@ _add_custom_config "ODOO_DB_USER" "odoo"
 _add_custom_config "ODOO_DB_PASSWORD" "dbpass"
 _add_custom_config "ODOO_ADMIN_PASSWD" "odoopass"
 _add_custom_config "ODOO_PORT" "8069"
-_add_custom_config "DB_PORT" "5432"
+#_add_custom_config "DB_PORT" "5432"
+
 _success "Got the defaults values"
 
 _section "Configure your application"
