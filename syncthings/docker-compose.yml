@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  syncthing:
+    image: linuxserver/syncthing
+    restart: always
+    ports:
+     - CUSTOM_PORT_HTTP:8384
+     - 22000:22000
+     - 21027:21027/udp
+    volumes:
+      - ./volumes/config:/config
+      - ./volumes/data:/data
+    environment:
+     - PGID=1001
+     - PUID=1001
+    # - UMASK_SET: <022>
+     #- VIRTUAL_PORT=8384
+     #- VIRTUAL_HOST=domain.com
+     #- LETSENCRYPT_HOST=domain.com
+     #- LETSENCRYPT_EMAIL=email@domain.com
+    #networks:
+    #  - webproxy
+#networks:
+#  webproxy:
+#    external:
+#      name: webproxy

@@ -7,7 +7,9 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
 #VARIABLES
 _section "Read Default config"
-_add_custom_config "PORT_HTTP" "8065"
+_add_custom_config "CRON" "* */1 * * *"
+_add_custom_config "TARGET" "/target-to-backup"
+_add_custom_config "DESTINATION" "/destination-of-backup"
 _success "Got the defaults values"
 
 _section "Configure your application"
