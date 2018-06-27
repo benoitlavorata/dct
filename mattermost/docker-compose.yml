@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  mattermost:
+    image: mattermost/mattermost-preview
+    restart: always
+    # We do not want to expose ports publicly, so we comment this part 
+    # But we note that the native port of mattermost is 8065, which is only 
+     # available on the virtual network "webproxy" where the proxy is also connected
+    ports:
+     - CUSTOM_PORT_HTTP:8065
+    volumes:
+      - ./volumes/config:/mm/mattermost/config:rw
+      - ./volumes/data:/mm/mattermost/mattermost-data:rw
+      - ./volumes/logs:/mm/mattermost/logs:rw
+      - ./volumes/mysql:/var/lib/mysql:rw
+      # - /etc/localtime:/etc/localtime:ro
+    #environment:
+    #  - VIRTUAL_PORT=8065
+    #  - VIRTUAL_HOST=domain.com
+    #  - LETSENCRYPT_HOST=domain.com
+    #  - LETSENCRYPT_EMAIL=admin@domain.com
+    #networks:
+    #  - webproxy
+
+#networks:
+#  webproxy:
+#    external:
+#      name: webproxy
