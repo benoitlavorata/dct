@@ -8,6 +8,7 @@ _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 #VARIABLES
 _section "Read Default config"
 _add_custom_config "PORT_HTTP" "9999"
+_add_custom_config "PASSWORD" "1234"
 _success "Got the defaults values"
 
 _section "Configure your application"

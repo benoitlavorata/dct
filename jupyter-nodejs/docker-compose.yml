@@ -2,17 +2,20 @@ version: '3'
 
 services:
 
-  ijs:
-    image: nikhilk/ijs
+  jupyter:
+    image: vhtec/jupyter-docker
     restart: always
     # We do not want to expose ports publicly, so we comment this part 
     # But we note that the native port of mattermost is 8065, which is only 
      # available on the virtual network "webproxy" where the proxy is also connected
     ports:
-     - CUSTOM_PORT_HTTP:9999
+     - CUSTOM_PORT_HTTP:8888
     volumes:
-      - ./volumes/data:/data
-    #environment:
+      - ./volumes/jupyter:/home/jovyan/work
+    environment:
+      - PASSWORD="CUSTOM_PASSWORD"
+      - NB_UID=1001
+      #- GRANT_SUDO=yes
     #  - VIRTUAL_PORT=8888
     #  - VIRTUAL_HOST=domain.com
     #  - LETSENCRYPT_HOST=domain.com
