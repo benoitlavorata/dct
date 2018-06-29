@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  backup:
+    image: mohamnag/s3-dir-backup
+    restart: always
+    command: /opt/backup.sh
+    environment:
+      - BACKUP_CRON_SCHEDULE="0 17 * * *"
+      - BACKUP_TGT_DIR=/backup/
+      - BACKUP_SRC_DIR=/data/
+      - BACKUP_FILE_NAME=`date +%Y%m%d`/`date +%Y%m%d-%H%M%S`-backup
+    volumes:
+      - ./volumes/target:/data/
+      - ./volumes/backup:/backup/
