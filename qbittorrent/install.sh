@@ -1,13 +1,23 @@
 #!/bin/bash
-#"default-runtime": "nvidia"
 
+# DOWNLOAD COMPOSE
 _section "Download docker-compose file"
 _download $APP_COMPOSE_URL
 _success "OK, script downloaded at $APP_NAME/docker-compose.yml"
 
-#VARIABLES
+_section "Create volumes folder bind on host in ./volumes"
+mkdir -p volumes/config volumes/torrents volumes/downloads
+
+_section "Download default odoo.conf"
+_download "https://raw.githubusercontent.com/sbglive/compose/master/$APP_NAME/odoo.conf"
+_success "OK, script downloaded at $APP_NAME/odoo.conf"
+
 _section "Read Default config"
-_add_custom_config "PORT_TCP" "8080"
+_add_custom_config "ODOO_DB_USER" "odoo"
+_add_custom_config "ODOO_DB_PASSWORD" "dbpass"
+_add_custom_config "ODOO_ADMIN_PASSWD" "odoopass"
+_add_custom_config "ODOO_PORT" "8069"
+#_add_custom_config "DB_PORT" "5432"
 _success "Got the defaults values"
 
 _section "Configure your application"
@@ -21,14 +31,13 @@ _break_line
 _prompt 'Are you sure (y/n) ? ' CUSTOM_CONFIG_CONFIRM
 
 if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
-    _section "Building configuration, default login/pass is admin // adminadmin"
+    _section "Building configuration"
 
     _log "Replace config into docker-compose.yml"
     for index in ${!CUSTOM_CONFIG_NAMES[*]} 
     do
        sed -i -e "s/CUSTOM_${CUSTOM_CONFIG_NAMES[$index]}/${CUSTOM_CONFIG_VALUES[$index]}/g" "docker-compose.yml"
     done
-
     _success "OK, configuration is done"
     _create_compose_scripts
     _shortcuts_summary
@@ -36,7 +45,7 @@ if [ "$CUSTOM_CONFIG_CONFIRM" == "y" ]; then
     _break_line
     _prompt 'Do you want me to start it now (y/n) ?' CUSTOM_START_CONFIRM
     _break_line
-
+    
     if [ "$CUSTOM_START_CONFIRM" == "y" ]; then
         _log "OK, starting it now. ** It will automatically restart it if you reboot your computer **"
         

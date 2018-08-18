@@ -8,11 +8,6 @@ services:
       - 6881:6881/tcp
       - 6881:6881/udp
     volumes:
-      - qbittorrent-config-volume:/config
-      - qbittorrent-torrents-volume:/torrents
-      - qbittorrent-downloads-volume:/downloads
-
-volumes:
-  qbittorrent-config-volume:
-  qbittorrent-torrents-volume:
-  qbittorrent-downloads-volume:
+      - ./volumes/config:/config
+      - ./volumes/torrents:/torrents
+      - ./volumes/downloads:/downloads
