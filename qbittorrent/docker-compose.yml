@@ -1,0 +1,18 @@
+version: '3'
+services:
+  qbittorrent:
+    image:  wernight/qbittorrent:latest
+    restart: 'always'
+    ports:
+      - CUSTOM_PORT_TCP:8080 
+      - 6881:6881/tcp
+      - 6881:6881/udp
+    volumes:
+      - qbittorrent-config-volume:/config
+      - qbittorrent-torrents-volume:/torrents
+      - qbittorrent-downloads-volume:/downloads
+
+volumes:
+  qbittorrent-config-volume:
+  qbittorrent-torrents-volume:
+  qbittorrent-downloads-volume:
