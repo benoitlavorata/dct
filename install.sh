@@ -18,6 +18,7 @@ source ~/.bash_profile
 
 echo "Download & Install app compose (benoitlavorata)"
 cd ~/bin
+rm app
 rm compose.sh
 rm helpers.sh
 wget https://raw.githubusercontent.com/benoitlavorata/compose/master/helpers.sh && chmod +x helpers.sh

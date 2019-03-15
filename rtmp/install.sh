@@ -9,7 +9,7 @@ _section "Download docker-compose file"
 if [ "$CUSTOM_BEHIND_PROXY" == "y" ]; then
     _log "OK, using proxyfied version."
     _download $APP_COMPOSE_PROXYFIED_URL
-    mv $APP_NAME/docker-compose.proxyfied.yml $APP_NAME/docker-compose.yml
+    mv docker-compose.proxyfied.yml docker-compose.yml
 else
     _log "OK, using non-proxyfied version"
     _download $APP_COMPOSE_URL

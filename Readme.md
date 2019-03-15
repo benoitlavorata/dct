@@ -10,7 +10,7 @@ If you want to be able to run this script easily, anywhere on your system, move 
 
 ```bash
 rm install.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/install.sh && chmod +x install.sh
+wget https://raw.githubusercontent.com/benoitlavorata/compose/master/install.sh && chmod +x install.sh
 ./install.sh
 rm install.sh
 ```
