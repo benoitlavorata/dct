@@ -410,12 +410,12 @@ echo 'PATH=$PATH:$HOME/bin' >> ~/.bash_profile
 _log "Reload ~/.bash_profile"
 source ~/.bash_profile
 
-_log "Download & Install app compose (SBG)"
+_log "Download & Install app compose (benoitlavorata)"
 cd ~/bin
 rm compose.sh
 rm helpers.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/helpers.sh && chmod +x helpers.sh
-wget https://raw.githubusercontent.com/sbglive/compose/master/compose.sh && chmod +x compose.sh
+wget https://raw.githubusercontent.com/benoitlavorata/compose/master/helpers.sh && chmod +x helpers.sh
+wget https://raw.githubusercontent.com/benoitlavorata/compose/master/compose.sh && chmod +x compose.sh
 mv compose.sh app
 _success "Installed the app !"
 
