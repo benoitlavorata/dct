@@ -191,8 +191,10 @@ function _shortcuts_summary {
     _section "How to start your application ?"
     _info "You can now start your app by executing these commands:"
     _log " "
-    _log "Start:$__INDENT./up.sh"
-    _log "Stop :$__INDENT./down.sh"
+    _log "Up:$__INDENT./up.sh"
+    _log "Down :$__INDENT./down.sh"
+    _log "Reboot :$__INDENT./reboot.sh"
+    _log "Restart :$__INDENT./restart.sh"
     _log "Logs :$__INDENT./logs.sh"
 }
 
@@ -202,18 +204,28 @@ function _create_compose_scripts {
     _section "Create shortcut scripts for the app"
     _log "Create up.sh, down.sh scripts"
     echo -e "#!/bin/bash" > up.sh
-    echo -e "echo -e Will now start: ..." >> up.sh
+    echo -e "echo -e Will now go up ..." >> up.sh
     echo -e "docker-compose up -d" >> up.sh
     chmod +x up.sh
 
     echo -e "#!/bin/bash" > down.sh
-    echo -e "echo -e Will now stop: ..." >> down.sh
+    echo -e "echo -e Will now go down: ..." >> down.sh
     echo -e "docker-compose down" >> down.sh
     chmod +x down.sh
 
+    echo -e "#!/bin/bash" > reboot.sh
+    echo -e "./down.sh" >> reboot.sh
+    echo -e "./up.sh" >> reboot.sh
+    chmod +x reboot.sh
+
     echo -e "#!/bin/bash" > logs.sh
     echo -e "echo -e Will now tail logs..." >> logs.sh
-    echo -e "docker-compose logs -f" >> logs.sh
+    echo -e "docker-compose logs -f --tail=30" >> logs.sh
+    chmod +x logs.sh
+
+    echo -e "#!/bin/bash" > restart.sh
+    echo -e "echo -e Will now restart..." >> restart.sh
+    echo -e "docker-compose restart" >> restart.sh
     chmod +x logs.sh
 
     _success "Created shortcuts"

@@ -1,0 +1,47 @@
+version: '2.2'
+services:
+  rtmp_nginx:
+    container_name: rtmp_nginx
+    image: jasonrivers/nginx-rtmp:latest
+    restart: 'always'
+    environment:
+      RTMP_STREAM_NAMES: CUSTOM_RTMP_STREAM_NAMES
+      #RTMP_PUSH_URLS: rtmp://live.youtube.com/myname/streamkey,rtmp://live.twitch.tv/app/streamkey
+    #ports:
+    #  - CUSTOM_RTMP_PORT:1935
+    #  - CUSTOM_HLS_PORT:8080
+    networks:
+      - webproxy
+  
+  relay_rtmp_port:
+    restart: 'always'
+    image: alpine/socat
+    expose:
+      - 8080
+    command: "TCP-LISTEN:8080,reuseaddr,fork,su=nobody TCP:rtmp_nginx:1935 "
+    environment:
+      VIRTUAL_PORT: 8080
+      VIRTUAL_HOST: "CUSTOM_DOMAIN_RTMP"
+      LETSENCRYPT_HOST: "CUSTOM_DOMAIN_RTMP"
+      LETSENCRYPT_EMAIL: "CUSTOM_DOMAIN_CONTACT"
+    networks:
+      - webproxy
+      
+  relay_hls_port:
+    restart: 'always'
+    image: alpine/socat
+    expose:
+      - 8080
+    command: "TCP-LISTEN:8080,reuseaddr,fork,su=nobody TCP:rtmp_nginx:8080 "
+    environment:
+      VIRTUAL_PORT: 8080
+      VIRTUAL_HOST: "CUSTOM_DOMAIN_HLS"
+      LETSENCRYPT_HOST: "CUSTOM_DOMAIN_HLS"
+      LETSENCRYPT_EMAIL: "CUSTOM_DOMAIN_CONTACT"
+    networks:
+      - webproxy
+     
+networks:
+  webproxy:
+    external:
+      name: webproxy
