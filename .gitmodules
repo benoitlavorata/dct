@@ -25,3 +25,6 @@
 [submodule "mattermost.service"]
 	path = mattermost.service
 	url = https://gitlab.com/benoit.lavorata/mattermost.service.git
+[submodule "relay.service"]
+	path = relay.service
+	url = https://gitlab.com/benoit.lavorata/relay.service.git
