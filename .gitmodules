@@ -31,3 +31,6 @@
 [submodule "portainer.service"]
 	path = portainer.service
 	url = https://gitlab.com/benoit.lavorata/portainer.service.git
+[submodule "watchtower.service"]
+	path = watchtower.service
+	url = https://gitlab.com/benoit.lavorata/watchtower.service.git
