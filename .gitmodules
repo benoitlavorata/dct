@@ -28,3 +28,6 @@
 [submodule "relay.service"]
 	path = relay.service
 	url = https://gitlab.com/benoit.lavorata/relay.service.git
+[submodule "portainer.service"]
+	path = portainer.service
+	url = https://gitlab.com/benoit.lavorata/portainer.service.git
