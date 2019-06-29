@@ -4,3 +4,6 @@
 [submodule "ide.service"]
 	path = ide.service
 	url = https://gitlab.com/benoit.lavorata/ide.service.git
+[submodule "registry.service"]
+	path = registry.service
+	url = https://gitlab.com/benoit.lavorata/registry.service.git
