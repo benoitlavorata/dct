@@ -1,0 +1,6 @@
+[submodule "nginx.service"]
+	path = nginx.service
+	url = https://gitlab.com/benoit.lavorata/nginx.service.git
+[submodule "ide.service"]
+	path = ide.service
+	url = https://gitlab.com/benoit.lavorata/ide.service.git
