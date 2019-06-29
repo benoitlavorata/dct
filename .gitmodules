@@ -22,3 +22,6 @@
 [submodule "pgadmin.service"]
 	path = pgadmin.service
 	url = https://gitlab.com/benoit.lavorata/pgadmin.service.git
+[submodule "mattermost.service"]
+	path = mattermost.service
+	url = https://gitlab.com/benoit.lavorata/mattermost.service.git
