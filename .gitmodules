@@ -13,3 +13,6 @@
 [submodule "rainloop.service"]
 	path = rainloop.service
 	url = https://gitlab.com/benoit.lavorata/rainloop.service.git
+[submodule "nodered.service"]
+	path = nodered.service
+	url = https://gitlab.com/benoit.lavorata/nodered.service.git
