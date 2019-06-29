@@ -7,3 +7,6 @@
 [submodule "registry.service"]
 	path = registry.service
 	url = https://gitlab.com/benoit.lavorata/registry.service.git
+[submodule "metabase.service"]
+	path = metabase.service
+	url = https://gitlab.com/benoit.lavorata/metabase.service.git
