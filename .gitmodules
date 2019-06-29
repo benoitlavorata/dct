@@ -10,3 +10,6 @@
 [submodule "metabase.service"]
 	path = metabase.service
 	url = https://gitlab.com/benoit.lavorata/metabase.service.git
+[submodule "rainloop.service"]
+	path = rainloop.service
+	url = https://gitlab.com/benoit.lavorata/rainloop.service.git
