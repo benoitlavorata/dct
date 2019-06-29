@@ -16,3 +16,6 @@
 [submodule "nodered.service"]
 	path = nodered.service
 	url = https://gitlab.com/benoit.lavorata/nodered.service.git
+[submodule "mqtt.service"]
+	path = mqtt.service
+	url = https://gitlab.com/benoit.lavorata/mqtt.service.git
