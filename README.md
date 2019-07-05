@@ -59,10 +59,12 @@ This version does not keep a copy of the script on your computer.
 
 #### Install alias with BASH
 ```bash
-echo "" >> $HOME/.bashrc && echo 'alias dct="bash <(curl -s https://gitlab.com/benoit.lavorata/dct/raw/master/dct.sh)"' >> $HOME/.bashrc && source $HOME/.bashrc
+echo "" >> $HOME/.bashrc 
+echo 'alias dct="bash <(curl -s https://gitlab.com/benoit.lavorata/dct/raw/master/dct.sh)"' >> $HOME/.bashrc && source $HOME/.bashrc
 ```
 
 #### Install with ZSH
 ```bash
-echo "" >> $HOME/.zshrc && echo 'alias dct="bash <(curl -s https://gitlab.com/benoit.lavorata/dct/raw/master/dct.sh)"' >> $HOME/.zshrc && source $HOME/.zshrc
+echo "" >> $HOME/.zshrc
+echo 'alias dct="bash <(curl -s https://gitlab.com/benoit.lavorata/dct/raw/master/dct.sh)"' >> $HOME/.zshrc && source $HOME/.zshrc
 ```
