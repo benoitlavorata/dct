@@ -15,7 +15,7 @@ dct nodered .
 ```
 
 Demo in terminal:
-[![asciicast](https://asciinema.org/a/O0KuF4KG7qlU29DwBf74w7bw3.png)](https://asciinema.org/a/O0KuF4KG7qlU29DwBf74w7bw3)
+[![asciicast](https://asciinema.org/a/O0KuF4KG7qlU29DwBf74w7bw3.png)](https://asciinema.org/a/O0KuF4KG7qlU29DwBf74w7bw3?autoplay=1)
 
 ### Requirements
 You must have cUR, wget, git installed. Of course you need to have docker/docker-compose installed.
