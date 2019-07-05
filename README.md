@@ -1,24 +1,28 @@
 # List of docker-compose ready apps
 Using docker and docker-compose is not so easy for the beginners... This is a repository of the apps I use, hopefully it can save time to others !
 
-I only tested these scripts on ubuntu 16.04, not sure it will work for everyone. 
-For windows users, do not loose your time here.
+Should work on all ubuntu/debians. 
+For windows/mac users, do not loose your time here.
 
 
-## How to use this script as a command line anywhere on your system ?
-If you want to be able to run this script easily, anywhere on your system, move it to your $PATH like below:
-
-```bash
-rm install.sh
-wget https://raw.githubusercontent.com/benoitlavorata/compose/master/install.sh && chmod +x install.sh
-./install.sh
-rm install.sh
+## Examples
+To install node-red service in current folder (https://gitlab.com/benoit.lavorata/nodered.service), just do
+```
+dct nodered .
 ```
 
-Now you can install any applications from this command:
+## Requirements
+You must have cUR, wget, git installed. Of course you need to have docker/docker-compose installed.
 ```bash
-app shadowsocks
+sudo apt-get install -y curl jq git
 ```
 
-## Make it your own ? Contribute
-Feel free to fork, clone or contribute !
+## Install with BASH
+```bash
+echo "" >> $HOME/.bashrc && echo 'alias dct="bash <(curl -s https://gitlab.com/snippets/1872219/raw\?inline\=false)"' >> $HOME/.bashrc && source $HOME/.bashrc
+```
+
+## Install with ZSH
+```bash
+echo "" >> $HOME/.zshrc && echo 'alias dct="bash <(curl -s https://gitlab.com/snippets/1872219/raw\?inline\=false)"' >> $HOME/.zshrc && source $HOME/.zshrc
+```
