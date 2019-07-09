@@ -147,6 +147,20 @@ then
     DESTINATION=$PWD
 fi
 
+_log "Check if jq and curl are installed..."
+if [ $(dpkg-query -W -f='${Status}' jq 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  _log1 "install jq"
+  sudo apt-get install jq -y
+fi
+
+if [ $(dpkg-query -W -f='${Status}' curl 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  _log1 "install curl"
+  sudo apt-get install curl -y
+fi
+  _log1 "OK, packages installed"
+
 _log "Attempt to install ${SERVICE_NAME} in ${DESTINATION}, from ${GIT_URL}"
 
 _log "Check if service exists"
